@@ -72,27 +72,29 @@ const Navbar = () => {
                 >
                   <div className="hidden md:block">
                     {/* Avatar */}
-                    <img
-                      className="rounded-full"
-                      referrerPolicy="no-referrer"
-                      src={user && user.photoURL ? user.photoURL : ""}
-                      alt="profile"
-                      height="30"
-                      width="30"
-                    />
+                    {user ? (
+                      <img
+                        className="rounded-full"
+                        referrerPolicy="no-referrer"
+                        src={user && user.photoURL ? user.photoURL : ""}
+                        alt="profile"
+                        height="30"
+                        width="30"
+                      />
+                    ) : (
+                      <Link
+                        to="/login"
+                        className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                      >
+                        Login
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
               {isOpen && (
                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm">
                   <div className="flex flex-col cursor-pointer">
-                    <Link
-                      to="/"
-                      className="block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                    >
-                      Home
-                    </Link>
-
                     {user ? (
                       <>
                         <Link
