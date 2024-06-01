@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import useAuth from "./Hooks/useAuth";
 import Container from "./Container";
 import logo from "../assets/gym.png";
@@ -29,8 +29,39 @@ const Navbar = () => {
                 </p>
               </div>
             </Link>
-            <div>
-              <Link to="/">Home</Link>
+            <div className="space-x-4 font-medium">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "active underline text-pink-500" : ""
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/all-trainers"
+                className={({ isActive }) =>
+                  isActive ? "active underline text-pink-500" : ""
+                }
+              >
+                All Trainers
+              </NavLink>
+              <NavLink
+                to="/all-classes"
+                className={({ isActive }) =>
+                  isActive ? "active underline text-pink-500" : ""
+                }
+              >
+                All Classs
+              </NavLink>
+              <NavLink
+                to="/community"
+                className={({ isActive }) =>
+                  isActive ? "active underline text-pink-500" : ""
+                }
+              >
+                Community
+              </NavLink>
             </div>
             {/* Dropdown Menu */}
             <div className="relative">
