@@ -1,20 +1,55 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 const Login = () => {
+  const { signIn, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const handleForm = async (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    try {
+      const result = await signIn(email, password);
+
+      console.log(result);
+
+      toast.success("SignUp Successful");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleSignin = async () => {
+    try {
+      const result = await signInWithGoogle();
+      console.log(result);
+      toast.success("SignUp Successful");
+      navigate("/");
+    } catch (err) {
+      toast(err.message);
+    }
+  };
   return (
     <div>
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 bg-pink-300 mb-5">
         <h1 className="text-2xl font-bold text-center">Login</h1>
-        <form noValidate="" action="" className="space-y-6 text-left">
+        <form
+          noValidate=""
+          action=""
+          className="space-y-6 text-left"
+          onSubmit={handleForm}
+        >
           <div className="space-y-1 text-sm">
-            <label htmlFor="username" className="block dark:text-gray-600">
-              Username
+            <label htmlFor="email" className="block dark:text-gray-600">
+              Email
             </label>
             <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>
@@ -42,7 +77,11 @@ const Login = () => {
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
         </div>
         <div className="flex justify-center space-x-4">
-          <button aria-label="Log in with Google" className="p-3 rounded-sm">
+          <button
+            aria-label="Log in with Google"
+            className="p-3 rounded-sm"
+            onClick={handleSignin}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 32 32"
@@ -74,14 +113,14 @@ const Login = () => {
           Don't have an account ?
           <Link to="/register">
             {" "}
-            <a
+            <button
               rel="noopener noreferrer"
               href="#"
               className="underline font-medium dark:text-gray-800"
             >
               {" "}
               Sign up
-            </a>
+            </button>
           </Link>
         </p>
       </div>
