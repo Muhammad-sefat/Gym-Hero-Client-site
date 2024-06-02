@@ -1,9 +1,10 @@
+import Carousel from "./Carousel";
 import Feature from "./Feature";
 
 const Home = () => {
   return (
     <div>
-      {/* <Carousel /> */}
+      <Carousel />
       <Feature />
     </div>
   );
