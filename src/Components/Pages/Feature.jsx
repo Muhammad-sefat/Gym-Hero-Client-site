@@ -1,3 +1,9 @@
+import feature1 from "../../assets/feature-01.jpg";
+import feature2 from "../../assets/feature-02.png";
+import feature3 from "../../assets/feature-03.jpg";
+import feature4 from "../../assets/feature-04.jpg";
+import feature5 from "../../assets/feature-05.jpg";
+import feature6 from "../../assets/feature-06.png";
 const Feature = () => {
   return (
     <div>
@@ -14,18 +20,7 @@ const Feature = () => {
         </div>
         <div className="container mx-auto grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[200px]" src={feature1} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Personalized Workout Plans
             </h3>
@@ -37,18 +32,7 @@ const Feature = () => {
             </div>
           </div>
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[150px]" src={feature2} alt="" />
             <h3 className="my-3 text-3xl font-semibold">Expert Trainers</h3>
             <div className="space-y-1 leading-tight">
               <p>
@@ -58,18 +42,7 @@ const Feature = () => {
             </div>
           </div>
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[150px]" src={feature3} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               State-of-the-Art Equipment
             </h3>
@@ -81,18 +54,7 @@ const Feature = () => {
             </div>
           </div>
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[200px]" src={feature4} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Nutritional Guidance
             </h3>
@@ -104,18 +66,7 @@ const Feature = () => {
             </div>
           </div>
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[150px]" src={feature5} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Group Fitness Classes
             </h3>
@@ -127,18 +78,7 @@ const Feature = () => {
             </div>
           </div>
           <div className="flex flex-col items-center p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-8 h-8 dark:text-violet-600"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+            <img className="w-[120px]" src={feature6} alt="" />
             <h3 className="my-3 text-3xl font-semibold">Progress Tracking</h3>
             <div className="space-y-1 leading-tight">
               <p>

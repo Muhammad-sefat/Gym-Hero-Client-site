@@ -1,3 +1,4 @@
+import AboutUs from "./AboutUs";
 import Carousel from "./Carousel";
 import Feature from "./Feature";
 
@@ -6,6 +7,7 @@ const Home = () => {
     <div>
       <Carousel />
       <Feature />
+      <AboutUs />
     </div>
   );
 };
