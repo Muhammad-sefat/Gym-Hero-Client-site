@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
+import SingleReview from "./SingleReview";
 
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
   useEffect(() => {
     fetch("http://localhost:5000/review")
       .then((res) => res.json())
@@ -17,13 +18,23 @@ const Testimonial = () => {
   return (
     <div>
       <div className="my-8">
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <p className="text-3xl font-semibold leading-normal">
+          WHAT'S CLIENT'S SAY
+        </p>
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={10}
+          loop={true}
+          navigation={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Navigation, Pagination]}
+          className="mySwiper"
+        >
           {reviews.map((review) => (
-            <SwiperSlide className="px-20 mx-auto text-center">
-              <p>{review.review}</p>
-              <p className="text-xl font-semibold text-orange-500 pt-3">
-                {review.name}
-              </p>
+            <SwiperSlide className="text-center">
+              <SingleReview review={review} />
             </SwiperSlide>
           ))}
         </Swiper>
