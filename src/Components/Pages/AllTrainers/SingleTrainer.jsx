@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleTrainer = ({ trainer }) => {
   return (
@@ -71,9 +72,11 @@ const SingleTrainer = ({ trainer }) => {
               </svg>
             </a>
           </div>
-          <button className="border p-2 rounded-md font-semibold border-blue-600">
-            Know More{" "}
-          </button>
+          <Link to={`/trainer-details/${trainer._id}`}>
+            <button className="border p-2 rounded-md font-semibold border-blue-600">
+              Know More{" "}
+            </button>
+          </Link>
         </div>
       </div>
     </div>
