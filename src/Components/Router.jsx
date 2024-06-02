@@ -4,6 +4,7 @@ import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ErrorPage from "./ErrorPage";
 import Home from "./Pages/Home";
+import AllTrainers from "./Pages/AllTrainers/AllTrainers";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/all-trainers",
+        element: <AllTrainers />,
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

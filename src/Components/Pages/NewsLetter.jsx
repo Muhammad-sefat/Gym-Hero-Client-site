@@ -1,4 +1,27 @@
+import toast from "react-hot-toast";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
+
 const NewsLetter = () => {
+  const axiosPublic = useAxiosPublic();
+  const handleForm = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    console.log(name, email);
+    const user = {
+      name,
+      email,
+    };
+    try {
+      const { data } = await axiosPublic.post("/newsLetter", user);
+      console.log(data);
+      toast.success("Save Successfully");
+      form.reset();
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <div>
       <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
@@ -17,7 +40,11 @@ const NewsLetter = () => {
             </div>
           </div>
         </div>
-        <form noValidate="" className="space-y-6 text-left">
+        <form
+          noValidate=""
+          className="space-y-6 text-left"
+          onSubmit={handleForm}
+        >
           <div>
             <label htmlFor="name" className="text-lg font-medium mb-2">
               Name
@@ -25,6 +52,7 @@ const NewsLetter = () => {
             <input
               id="name"
               type="text"
+              name="name"
               placeholder=""
               className="w-full p-3 border border-blue-700 rounded-lg dark:bg-gray-100"
             />
@@ -36,6 +64,7 @@ const NewsLetter = () => {
             <input
               id="email"
               type="email"
+              name="email"
               className="w-full p-3 border border-blue-700 rounded-lg dark:bg-gray-100"
             />
           </div>
