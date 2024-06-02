@@ -20,7 +20,7 @@ const TrainerDetails = () => {
         <img
           src={image}
           alt=""
-          className="h-80 dark:bg-gray-500 aspect-video"
+          className="h-80 dark:bg-gray-500 aspect-video rounded"
         />
         <div className="flex flex-col justify-center flex-1 p-6 dark:bg-gray-50">
           <h3 className="text-3xl font-bold">{name}</h3>
@@ -41,8 +41,8 @@ const TrainerDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between my-5">
-        <div className="text-left">
+      <div className="flex items-center justify-around gap-5 my-5 px-8 mx-auto">
+        <div className="text-left flex-1">
           <p>
             {" "}
             <span className="text-xl text-blue-600 font-medium">
@@ -72,7 +72,28 @@ const TrainerDetails = () => {
             {phone}
           </p>
         </div>
-        <div></div>
+        <div className="flex-1">
+          <p className="text-2xl font-medium pb-3">Available Slots</p>
+          <p>{available_slots}</p>
+        </div>
+        <div className="flex-1">
+          <section className="bg-white dark:bg-gray-900">
+            <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+              <h2 className="max-w-2xl mx-auto text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">
+                Become A <span className="text-blue-600">Gym Hero</span> Trainer
+              </h2>
+
+              <div className="inline-flex w-full mt-6 sm:w-auto">
+                <a
+                  href="#"
+                  className="inline-flex font-medium items-center justify-center w-full px-6 p-3 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                >
+                  Become A Trainer
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
