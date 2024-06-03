@@ -24,7 +24,7 @@ const SingleTrainer = ({ trainer }) => {
             Experience : {trainer.experience}
           </div>
           <span className="text-base text-gray-700 dark:text-gray-200">
-            {trainer.available_slots}
+            {trainer.available_slots[0]}
           </span>
           <div className="flex justify-center items-center space-x-3 py-4">
             <a
