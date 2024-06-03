@@ -3,6 +3,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const NewsLetter = () => {
   const axiosPublic = useAxiosPublic();
+
   const handleForm = async (e) => {
     e.preventDefault();
     const form = e.target;

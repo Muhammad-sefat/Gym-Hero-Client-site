@@ -143,12 +143,15 @@ const TrainerDetails = () => {
               </h2>
 
               <div className="inline-flex w-full mt-6 sm:w-auto">
-                <a
-                  href="#"
-                  className="inline-flex font-medium items-center justify-center w-full px-6 p-3 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-                >
-                  Become A Trainer
-                </a>
+                <Link to={"/become-trainer"}>
+                  {" "}
+                  <button
+                    href="#"
+                    className="inline-flex font-medium items-center justify-center w-full px-6 p-3 text-white duration-300 bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                  >
+                    Become A Trainer
+                  </button>
+                </Link>
               </div>
             </div>
           </section>

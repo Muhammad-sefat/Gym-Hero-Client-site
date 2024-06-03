@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import AllTrainers from "./Pages/AllTrainers/AllTrainers";
 import TrainerDetails from "./Pages/AllTrainers/TrainerDetails";
 import TrainerBooked from "./Pages/AllTrainers/TrainerBooked";
+import BecomeTrainer from "./Pages/AllTrainers/BecomeTrainer";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/trainer-booked/:id",
         element: <TrainerBooked />,
+      },
+      {
+        path: "/become-trainer",
+        element: <BecomeTrainer />,
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
