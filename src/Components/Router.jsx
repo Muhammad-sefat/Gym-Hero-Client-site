@@ -9,6 +9,7 @@ import TrainerDetails from "./Pages/AllTrainers/TrainerDetails";
 import TrainerBooked from "./Pages/AllTrainers/TrainerBooked";
 import BecomeTrainer from "./Pages/AllTrainers/BecomeTrainer";
 import AllClasses from "./Pages/AllClasses";
+import ClassTrainerDetails from "./Pages/ClassTrainerDetails";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/trainers/${params.id}`),
       },
+
       {
         path: "/trainer-booked/:id",
         element: <TrainerBooked />,
@@ -41,6 +43,12 @@ const router = createBrowserRouter([
       {
         path: "/all-classes",
         element: <AllClasses />,
+      },
+      {
+        path: "/all-classes-trainer/:id",
+        element: <ClassTrainerDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allClass/${params.id}`),
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

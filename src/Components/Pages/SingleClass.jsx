@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
+
 const SingleClass = ({ allClass }) => {
-  console.log(allClass);
   return (
     <div>
       <div className="max-w-md border border-blue-600 rounded-md shadow-md h-full p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800">
@@ -18,7 +19,9 @@ const SingleClass = ({ allClass }) => {
           </div>
           <div className="space-y-1 flex items-center justify-center gap-2">
             {allClass.trainers.map((trainer) => (
-              <img className="h-8 w-8 rounded-full" src={trainer.image} />
+              <Link to={`/all-classes-trainer/${trainer._id}`}>
+                <img className="h-8 w-8 rounded-full" src={trainer.image} />
+              </Link>
             ))}
           </div>
         </div>
