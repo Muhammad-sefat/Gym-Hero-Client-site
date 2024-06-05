@@ -12,12 +12,13 @@ import AllClasses from "./Pages/AllClasses";
 import ClassTrainerDetails from "./Pages/ClassTrainerDetails";
 import Community from "./Pages/Community/Community";
 import CommunityDetails from "./Pages/Community/CommunityDetails";
+import DashBoardLayOut from "./Pages/DashBoard/DashBoardLayOut";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    ErrorPage: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
     ],
+  },
+  {
+    path: "/Dashboard",
+    element: <DashBoardLayOut />,
   },
 ]);
 export default router;
