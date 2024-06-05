@@ -11,6 +11,7 @@ import BecomeTrainer from "./Pages/AllTrainers/BecomeTrainer";
 import AllClasses from "./Pages/AllClasses";
 import ClassTrainerDetails from "./Pages/ClassTrainerDetails";
 import Community from "./Pages/Community/Community";
+import CommunityDetails from "./Pages/Community/CommunityDetails";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
       {
         path: "/community",
         element: <Community />,
+      },
+      {
+        path: "/community_details/:id",
+        element: <CommunityDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/community-details/${params.id}`),
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

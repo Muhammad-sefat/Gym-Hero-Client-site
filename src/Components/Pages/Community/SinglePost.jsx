@@ -1,8 +1,6 @@
-import React from "react";
-
 const SinglePost = ({ post }) => {
   return (
-    <div>
+    <Link to={`/community_details/${post._id}`}>
       <section className="py-6 sm:py-12 dark:bg-gray-100 dark:text-gray-800">
         <div className="container p-6 mx-auto space-y-8">
           <article className="flex flex-col dark:bg-gray-50 text-left border border-pink-500 rounded hover:scale-110">
@@ -34,15 +32,15 @@ const SinglePost = ({ post }) => {
               <h3 className="flex-1 py-2 text-sm font-semibold leading-snug">
                 {post.title}
               </h3>
-              <div className="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
-                <span>June 1, 2020</span>
-                <span>2.1K views</span>
+              <div className="flex flex-wrap justify-between pt-3 space-x-2 text-base font-medium dark:text-gray-600">
+                <span> Date : {post.date}</span>
+                <span>{post.views} Views</span>
               </div>
             </div>
           </article>
         </div>
       </section>
-    </div>
+    </Link>
   );
 };
 
