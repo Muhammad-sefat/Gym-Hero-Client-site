@@ -13,6 +13,7 @@ import ClassTrainerDetails from "./Pages/ClassTrainerDetails";
 import Community from "./Pages/Community/Community";
 import CommunityDetails from "./Pages/Community/CommunityDetails";
 import DashBoardLayOut from "./Pages/DashBoard/DashBoardLayOut";
+import AllNewsLetter from "./Pages/DashBoard/AdminRoute/AllNewsLetter";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,12 @@ const router = createBrowserRouter([
   {
     path: "/Dashboard",
     element: <DashBoardLayOut />,
+    children: [
+      {
+        path: "all-newsletter-subscriber",
+        element: <AllNewsLetter />,
+      },
+    ],
   },
 ]);
 export default router;
