@@ -2,6 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
+import login from "../../assets/login01.jpg";
+
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
@@ -32,8 +34,8 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <div className="w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 bg-pink-300 mb-5">
+    <div className="flex items-center  p-5 md:px-10 mx-auto">
+      <div className="w-full max-w-md h-3/4 p-8 space-y-3 rounded-xl dark:bg-gray-50 dark:text-gray-800 bg-pink-300 mb-5">
         <h1 className="text-2xl font-bold text-center">Login</h1>
         <form
           noValidate=""
@@ -124,6 +126,7 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      <img src={login} alt="" />
     </div>
   );
 };

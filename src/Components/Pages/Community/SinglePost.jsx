@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const SinglePost = ({ post }) => {
   return (
     <Link to={`/community_details/${post._id}`}>

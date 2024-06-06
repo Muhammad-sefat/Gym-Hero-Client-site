@@ -14,7 +14,6 @@ const ClassTrainerDetails = () => {
     phone,
     _id,
   } = useLoaderData();
-  console.log(name, image);
 
   return (
     <div>
@@ -37,9 +36,9 @@ const ClassTrainerDetails = () => {
           </p>
           <div>
             <span className="text-xl font-medium">Expertise :</span>
-            {/* {skills.map((skill) => (
+            {skills.map((skill) => (
               <li key={skill._id}>{skill}</li>
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
@@ -123,7 +122,7 @@ const ClassTrainerDetails = () => {
         <div className="flex-1">
           <p className="text-2xl font-medium pb-3">Available Slots</p>
           <div>
-            {/* {available_slots.map((slot) => (
+            {available_slots.map((slot) => (
               <Link to={`/trainer-booked/${_id}`}>
                 {" "}
                 <p
@@ -133,7 +132,7 @@ const ClassTrainerDetails = () => {
                   {slot}
                 </p>
               </Link>
-            ))} */}
+            ))}
           </div>
         </div>
         <div className="flex-1">
