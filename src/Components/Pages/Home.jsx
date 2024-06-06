@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import AboutUs from "./AboutUs";
 import Carousel from "./Carousel";
 import Feature from "./Feature";
@@ -8,6 +9,9 @@ import Testimonial from "./Testimonial";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Gym Hero || Home</title>
+      </Helmet>
       <Carousel />
       <Feature />
       <AboutUs />
