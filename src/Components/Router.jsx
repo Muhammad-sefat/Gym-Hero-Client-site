@@ -37,10 +37,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/trainer-booked/:id",
+        path: "/trainer-booked/:id/:slot",
         element: <TrainerBooked />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/trainers/${params.id}`),
       },
       {
         path: "/become-trainer",

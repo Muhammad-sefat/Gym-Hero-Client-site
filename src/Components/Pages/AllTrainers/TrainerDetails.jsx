@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 
 const TrainerDetails = () => {
   const {
@@ -14,6 +14,12 @@ const TrainerDetails = () => {
     phone,
     _id,
   } = useLoaderData();
+
+  const navigate = useNavigate();
+
+  const handleSlotClick = (slot) => {
+    navigate(`/trainer-booked/${_id}/${encodeURIComponent(slot)}`);
+  };
 
   return (
     <div>
@@ -123,15 +129,13 @@ const TrainerDetails = () => {
           <p className="text-2xl font-medium pb-3">Available Slots</p>
           <div>
             {available_slots.map((slot) => (
-              <Link to={`/trainer-booked/${_id}`}>
-                {" "}
-                <p
-                  key={slot._id}
-                  className="border border-blue-600 my-2 p-2 rounded-md font-medium"
-                >
-                  {slot}
-                </p>
-              </Link>
+              <p
+                onClick={() => handleSlotClick(slot)}
+                key={slot._id}
+                className="border border-blue-600 my-2 p-2 rounded-md font-medium"
+              >
+                {slot}
+              </p>
             ))}
           </div>
         </div>
