@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../Hooks/useAxiosPublic";
 import SingleClass from "./SingleClass";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const AllClasses = () => {
   const [itemPerPage, setItemPerPage] = useState(6);

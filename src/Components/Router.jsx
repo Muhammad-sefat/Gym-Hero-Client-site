@@ -14,6 +14,9 @@ import Community from "./Pages/Community/Community";
 import CommunityDetails from "./Pages/Community/CommunityDetails";
 import DashBoardLayOut from "./Pages/DashBoard/DashBoardLayOut";
 import AllNewsLetter from "./Pages/DashBoard/AdminRoute/AllNewsLetter";
+import AllTrainerss from "./Pages/DashBoard/AdminRoute/AllTrainerss";
+import PrivateRoute from "./Provider/PrivateRoute";
+import AppliedTrainer from "./Pages/DashBoard/AdminRoute/AppliedTrainer";
 
 const router = createBrowserRouter([
   {
@@ -73,8 +76,24 @@ const router = createBrowserRouter([
     element: <DashBoardLayOut />,
     children: [
       {
-        path: "all-newsletter-subscriber",
-        element: <AllNewsLetter />,
+        index: true,
+        element: (
+          <PrivateRoute>
+            <AllNewsLetter />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-trainers",
+        element: <AllTrainerss />,
+      },
+      {
+        path: "applied-trainers",
+        element: (
+          <PrivateRoute>
+            <AppliedTrainer />
+          </PrivateRoute>
+        ),
       },
     ],
   },

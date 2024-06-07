@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const AllNewsLetter = () => {
   const [newsLetter, setNewsLetter] = useState([]);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic.get("/allnewsLetter");
+      const { data } = await axiosSecure.get("/allnewsLetter");
       setNewsLetter(data);
     };
     return getData;

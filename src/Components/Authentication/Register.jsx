@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
 import register from "../../assets/login02.jpg";
@@ -6,6 +6,8 @@ import register from "../../assets/login02.jpg";
 const Register = () => {
   const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ const Register = () => {
 
       updateUserProfile(name, image);
       toast.success("SignUp Successful");
-      navigate("/");
+      navigate(from);
     } catch (err) {
       toast(err.message);
     }
@@ -33,7 +35,7 @@ const Register = () => {
       const result = await signInWithGoogle();
       console.log(result);
       toast.success("SignUp Successful");
-      navigate("/");
+      navigate(from);
     } catch (err) {
       toast(err.message);
     }

@@ -1,12 +1,15 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import login from "../../assets/login01.jpg";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+
   const handleForm = async (e) => {
     e.preventDefault();
     const from = e.target;
@@ -18,7 +21,7 @@ const Login = () => {
       console.log(result);
 
       toast.success("SignUp Successful");
-      navigate("/");
+      navigate(from);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +31,7 @@ const Login = () => {
       const result = await signInWithGoogle();
       console.log(result);
       toast.success("SignUp Successful");
-      navigate("/");
+      navigate(from);
     } catch (err) {
       toast(err.message);
     }
