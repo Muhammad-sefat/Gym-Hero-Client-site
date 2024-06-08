@@ -52,7 +52,7 @@ const Navbar = () => {
                   isActive ? "active underline text-pink-500" : ""
                 }
               >
-                All Classs
+                All Classes
               </NavLink>
               <NavLink
                 to="/community"

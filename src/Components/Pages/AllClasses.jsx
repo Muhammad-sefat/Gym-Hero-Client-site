@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SingleClass from "./SingleClass";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet";
 
 const AllClasses = () => {
   const [itemPerPage, setItemPerPage] = useState(6);
@@ -37,6 +38,9 @@ const AllClasses = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Gym Hero || All Classes</title>
+      </Helmet>
       <h1 className="text-3xl font-semibold mb-5">Our All Classes</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
         {allClasses.map((allClass) => (

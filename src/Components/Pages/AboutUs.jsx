@@ -5,10 +5,10 @@ const AboutUs = () => {
   return (
     <div>
       <section className="p-4 lg:p-8 dark:bg-gray-100 dark:text-gray-800">
-        <h2 className="text-xl md:text-3xl font-semibold text-center my-5 text-blue-600">
+        <h2 className="text-xl md:text-6xl font-bold text-center my-5 text-blue-600">
           About Us
         </h2>
-        <p className="p-5 w-[80%] mx-auto mb-5">
+        <p className="p-5 md:w-[80%] mx-auto mb-5">
           Welcome to Gym Hero, where your fitness journey is our top priority.
           Founded on the principles of dedication, community, and
           transformation, Gym Hero is more than just a gym – it’s a place where
@@ -107,20 +107,6 @@ const AboutUs = () => {
                   From high-intensity interval training (HIIT) to yoga and
                   everything in between, our diverse class offerings ensure
                   there’s something for everyone.
-                </p>
-                <p className="py-3">
-                  <span className="font-medium">
-                    <li>Inclusive Environment:</li>
-                  </span>{" "}
-                  We welcome individuals of all fitness levels and backgrounds,
-                  fostering a positive and encouraging atmosphere.
-                </p>
-                <p className="py-3">
-                  <span className="font-medium">
-                    <li>Continuous Innovation:</li>
-                  </span>{" "}
-                  We stay ahead of fitness trends to bring you the most
-                  effective and enjoyable workout experiences.
                 </p>
               </p>
               <button className="text-lime-600">Read More...</button>

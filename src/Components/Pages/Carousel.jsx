@@ -36,30 +36,34 @@ export default function Carousel() {
         <SwiperSlide>
           <Slide
             image={bgImg1}
-            text={
-              "Libraries: the heartbeat of a community, where every page whispers a story and every shelf holds a world."
+            heading={"Increases Energy Levels"}
+            description={
+              "Points out how regular exercise can enhance overall energy and reduce feelings of fatigue."
             }
           ></Slide>
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgImg2}
-            text={`In the quiet sanctuary of a library, the soul finds solace, the mind finds nourishment, and the imagination finds wings.`}
+            heading={`Improves Physical Health`}
+            description={`Emphasizes the physical benefits of regular gym workouts, such as better heart health, muscle strength, flexibility, and weight managemen`}
           ></Slide>
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgImg3}
-            text={
-              "Within the walls of a library, time stands still, and the possibilities are endless."
+            heading={"Boosts Mental Well-Being"}
+            description={
+              "Highlights the positive impact of exercise on mental health, including mood improvement and stress reduction."
             }
           ></Slide>
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgImg4}
-            text={
-              "A library is not just a building filled with books; it's a portal to infinite knowledge, where every reader becomes an explorer"
+            heading={"Encourages Social Interaction"}
+            description={
+              " Focuses on the social benefits of going to the gym, like meeting new people and joining group activities."
             }
           ></Slide>
         </SwiperSlide>

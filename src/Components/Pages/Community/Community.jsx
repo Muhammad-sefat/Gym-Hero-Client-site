@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import SinglePost from "./SinglePost";
+import { Helmet } from "react-helmet";
 
 const Community = () => {
   const [itemPerPage, setItemPerPage] = useState(6);
@@ -38,6 +39,9 @@ const Community = () => {
   };
   return (
     <div>
+      <Helmet>
+        <title>Gym Hero || Community</title>
+      </Helmet>
       <p className="text-3xl font-bold">Our Community Post</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.map((post) => (

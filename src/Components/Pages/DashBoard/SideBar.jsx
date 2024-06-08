@@ -10,10 +10,14 @@ import logo from "../../../../public/gym.png";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaRegAddressCard } from "react-icons/fa";
+import useRole from "../../Hooks/useRole";
+import CommonMenu from "./Common/CommonMenu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
+  const [role] = useRole();
+  console.log(role);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -74,92 +78,49 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Newsletter */}
-              <NavLink
-                to="/Dashboard"
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <IoNewspaperOutline className="w-5 h-5" />
+              <CommonMenu
+                link="/Dashboard"
+                title={"All NewsLetters"}
+                icon={IoNewspaperOutline}
+              />
+              {/* All Trainers */}
+              <CommonMenu
+                link="all-trainers"
+                title={"All Trainers"}
+                icon={FaPeopleGroup}
+              />
 
-                <span className="mx-4 font-medium">All NewsLetters</span>
-              </NavLink>
-
-              {/* All Trainers*/}
-              <NavLink
-                to="all-trainers"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <FaPeopleGroup className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">All Trainers</span>
-              </NavLink>
-              {/* Applied trainers */}
-              <NavLink
-                to="applied-trainers"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <MdOutlineRequestQuote className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Applied Trainers</span>
-              </NavLink>
+              {/* Applied trainers*/}
+              <CommonMenu
+                link="applied-trainers"
+                title={"Applied Trainers"}
+                icon={MdOutlineRequestQuote}
+              />
               {/* Add new class */}
-              <NavLink
-                to="add-class"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <FaRegAddressCard className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Add Class</span>
-              </NavLink>
-              {/* My Balance*/}
-              <NavLink
-                to="balance"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                  }`
-                }
-              >
-                <MdAccountBalance className="w-5 h-5" />
-
-                <span className="mx-4 font-medium">Balance</span>
-              </NavLink>
+              <CommonMenu
+                link="add-class"
+                title={"Add Class"}
+                icon={FaRegAddressCard}
+              />
+              {/* Balance */}
+              <CommonMenu
+                link="balance"
+                title={"Balance"}
+                icon={MdAccountBalance}
+              />
             </nav>
           </div>
         </div>
 
         <div>
           <hr />
-
           {/* Profile Menu */}
-          <NavLink
-            to="/dashboard/profile"
-            className={({ isActive }) =>
-              `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-              }`
-            }
-          >
-            <FcSettings className="w-5 h-5" />
+          <CommonMenu
+            link="/dashboard/profile"
+            title={"Profile"}
+            icon={FcSettings}
+          />
 
-            <span className="mx-4 font-medium">Profile</span>
-          </NavLink>
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
