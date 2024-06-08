@@ -19,6 +19,7 @@ import PrivateRoute from "./Provider/PrivateRoute";
 import AppliedTrainer from "./Pages/DashBoard/AdminRoute/AppliedTrainer";
 import Profile from "./Pages/DashBoard/Profile";
 import MyProfile from "./Pages/MyProfile";
+import AddClass from "./Pages/DashBoard/AdminRoute/AddClass";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
             <AppliedTrainer />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "add-class",
+        element: <AddClass />,
       },
       {
         path: "profile",
