@@ -53,18 +53,29 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     });
   };
+  //save user
+  const saveUser = async (user) => {
+    const currentUser = {
+      name: user?.name,
+      email: user?.email,
+      role: "Member",
+    };
+
+    const { data } = await axiosPublic.put(`/user`, currentUser);
+    return data;
+  };
 
   // onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
+        saveUser(currentUser);
         // create user and store client
         const userInfo = { email: currentUser.email };
         axiosPublic.post("/jwt", userInfo).then((res) => {
           if (res.data.token) {
             localStorage.setItem("Access-Token", res.data.token);
-            console.log("Create Token");
           }
         });
       } else {
