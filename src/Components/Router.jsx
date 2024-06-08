@@ -17,6 +17,7 @@ import AllNewsLetter from "./Pages/DashBoard/AdminRoute/AllNewsLetter";
 import AllTrainerss from "./Pages/DashBoard/AdminRoute/AllTrainerss";
 import PrivateRoute from "./Provider/PrivateRoute";
 import AppliedTrainer from "./Pages/DashBoard/AdminRoute/AppliedTrainer";
+import Profile from "./Pages/DashBoard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
             <AppliedTrainer />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

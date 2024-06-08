@@ -115,11 +115,7 @@ const Sidebar = () => {
         <div>
           <hr />
           {/* Profile Menu */}
-          <CommonMenu
-            link="/dashboard/profile"
-            title={"Profile"}
-            icon={FcSettings}
-          />
+          <CommonMenu link="profile" title={"Profile"} icon={FcSettings} />
 
           <button
             onClick={logOut}
