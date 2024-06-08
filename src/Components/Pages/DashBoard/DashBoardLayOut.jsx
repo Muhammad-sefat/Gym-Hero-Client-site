@@ -10,7 +10,7 @@ const DashBoardLayOut = () => {
       </Helmet>
       <div className="relative min-h-screen md:flex">
         <SideBar />
-        <div className="flex-1 ml-10">
+        <div className="flex-1 md:ml-64">
           <div className="p-6">
             <Outlet />
           </div>

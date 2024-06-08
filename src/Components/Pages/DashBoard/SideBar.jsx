@@ -2,16 +2,14 @@ import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
-import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { MdAccountBalance, MdOutlineRequestQuote } from "react-icons/md";
 import logo from "../../../../public/gym.png";
-import { IoNewspaperOutline } from "react-icons/io5";
-import { FaPeopleGroup } from "react-icons/fa6";
-import { FaRegAddressCard } from "react-icons/fa";
 import useRole from "../../Hooks/useRole";
 import CommonMenu from "./Common/CommonMenu";
+import AdminMenu from "./Common/AdminMenu";
+import TrainerMenu from "./Common/TrainerMenu";
+import MemberMenu from "./Common/MemberMenu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -77,37 +75,9 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* Newsletter */}
-              <CommonMenu
-                link="/Dashboard"
-                title={"All NewsLetters"}
-                icon={IoNewspaperOutline}
-              />
-              {/* All Trainers */}
-              <CommonMenu
-                link="all-trainers"
-                title={"All Trainers"}
-                icon={FaPeopleGroup}
-              />
-
-              {/* Applied trainers*/}
-              <CommonMenu
-                link="applied-trainers"
-                title={"Applied Trainers"}
-                icon={MdOutlineRequestQuote}
-              />
-              {/* Add new class */}
-              <CommonMenu
-                link="add-class"
-                title={"Add Class"}
-                icon={FaRegAddressCard}
-              />
-              {/* Balance */}
-              <CommonMenu
-                link="balance"
-                title={"Balance"}
-                icon={MdAccountBalance}
-              />
+              {role === "member" && <MemberMenu />}
+              {role === "trainer" && <TrainerMenu />}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>

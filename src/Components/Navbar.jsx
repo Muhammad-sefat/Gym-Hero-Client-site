@@ -7,6 +7,7 @@ import logo from "../assets/gym.png";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  console.log(user);
 
   return (
     <div className=" w-full bg-white z-10 shadow-sm">
@@ -76,7 +77,11 @@ const Navbar = () => {
                       <img
                         className="rounded-full"
                         referrerPolicy="no-referrer"
-                        src={user && user.photoURL ? user.photoURL : ""}
+                        src={
+                          user && user.photoURL
+                            ? user.photoURL
+                            : "https://i.ibb.co/d231yQ0/profile-06.png"
+                        }
                         alt="profile"
                         height="30"
                         width="30"

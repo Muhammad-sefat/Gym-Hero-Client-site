@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
     const currentUser = {
       name: user?.name,
       email: user?.email,
-      role: "Member",
+      role: "member",
     };
 
     const { data } = await axiosPublic.put(`/user`, currentUser);

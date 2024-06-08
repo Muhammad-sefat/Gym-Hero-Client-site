@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const AllNewsLetter = () => {
   const [newsLetter, setNewsLetter] = useState([]);
   const axiosSecure = useAxiosSecure();
+  console.log(newsLetter);
 
   useEffect(() => {
     const getData = async () => {
@@ -17,10 +18,10 @@ const AllNewsLetter = () => {
     <div className="container p-2 mx-auto rounded-md sm:p-4 dark:text-gray-800 dark:bg-gray-50">
       <div className="overflow-x-auto">
         <p className="text-3xl font-medium mb-5">All NewsLetter Subscribers</p>
-        <table className="min-w-full text-left">
-          <thead className="rounded-t-lg dark:bg-gray-300">
+        <table className="min-w-full">
+          <thead className="rounded-t-lg dark:bg-gray-300   border-b border-gray-200">
             <tr className="text-center">
-              <th className="p-3 ">#</th>
+              <th className="p-3">#</th>
               <th title="Team name" className="p-3">
                 Name
               </th>
