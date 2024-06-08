@@ -18,6 +18,7 @@ import AllTrainerss from "./Pages/DashBoard/AdminRoute/AllTrainerss";
 import PrivateRoute from "./Provider/PrivateRoute";
 import AppliedTrainer from "./Pages/DashBoard/AdminRoute/AppliedTrainer";
 import Profile from "./Pages/DashBoard/Profile";
+import MyProfile from "./Pages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
         element: <CommunityDetails />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/community-details/${params.id}`),
+      },
+      {
+        path: "/my-profile",
+        element: <MyProfile />,
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

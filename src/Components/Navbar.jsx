@@ -104,10 +104,10 @@ const Navbar = () => {
                           Dashboard
                         </Link>
                         <Link
-                          to="/Dashboard/user-profile"
+                          to="/my-profile"
                           className="block  px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                         >
-                          User Profile
+                          My Profile
                         </Link>
                         <div
                           onClick={logOut}
