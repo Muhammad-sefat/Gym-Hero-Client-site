@@ -9,7 +9,9 @@ const AllClasses = () => {
   const [filter, setFilter] = useState("");
   const [count, setCount] = useState([]);
   const [allClasses, setAllClasses] = useState([]);
+  const [search, setSearch] = useState("");
   const axiosPublic = useAxiosPublic();
+  console.log(search);
 
   useEffect(() => {
     const getData = async () => {
@@ -42,10 +44,26 @@ const AllClasses = () => {
         <title>Gym Hero || All Classes</title>
       </Helmet>
       <h1 className="text-3xl font-semibold mb-5">Our All Classes</h1>
+      <form>
+        <div>
+          <input
+            className="border border-blue-600 p-2 rounded md:w-1/2 my-5"
+            placeholder="Search Here"
+            type="text"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </form>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
-        {allClasses.map((allClass) => (
-          <SingleClass key={allClass._id} allClass={allClass} />
-        ))}
+        {allClasses
+          .filter((item) => {
+            return search.toLocaleLowerCase() === ""
+              ? item
+              : item.name.toLocaleLowerCase().includes(search);
+          })
+          .map((allClass) => (
+            <SingleClass key={allClass._id} allClass={allClass} />
+          ))}
       </div>
       <div className="flex justify-center my-12">
         <button
