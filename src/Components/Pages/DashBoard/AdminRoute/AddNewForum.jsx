@@ -34,7 +34,7 @@ const AddNewForum = () => {
       title,
       long_description: description,
       date: getCurrentDate(),
-      view: createRandomViewCount(),
+      views: createRandomViewCount(),
     };
     try {
       const { data } = await axiosSecure.post("/community", newForum);

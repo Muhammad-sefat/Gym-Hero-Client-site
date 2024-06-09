@@ -5,6 +5,7 @@ import Feature from "./Feature";
 import NewsLetter from "./NewsLetter";
 import OurTeam from "./OurTeam";
 import Testimonial from "./Testimonial";
+import RecentForum from "./RecentForum";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <AboutUs />
       <OurTeam />
       <Testimonial />
+      <RecentForum />
       <NewsLetter />
     </div>
   );

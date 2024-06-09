@@ -12,9 +12,9 @@ const Login = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
-    const from = e.target;
-    const email = from.email.value;
-    const password = from.password.value;
+    const froom = e.target;
+    const email = froom.email.value;
+    const password = froom.password.value;
     try {
       const result = await signIn(email, password);
 
