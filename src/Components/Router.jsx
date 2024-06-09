@@ -20,6 +20,7 @@ import AppliedTrainer from "./Pages/DashBoard/AdminRoute/AppliedTrainer";
 import Profile from "./Pages/DashBoard/Profile";
 import MyProfile from "./Pages/MyProfile";
 import AddClass from "./Pages/DashBoard/AdminRoute/AddClass";
+import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
 
 const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
       {
         path: "add-class",
         element: <AddClass />,
+      },
+      {
+        path: "Add-new-forum",
+        element: <AddNewForum />,
       },
       {
         path: "profile",
