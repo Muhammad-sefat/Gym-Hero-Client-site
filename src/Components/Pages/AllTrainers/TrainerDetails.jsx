@@ -48,7 +48,7 @@ const TrainerDetails = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-around gap-5 my-5 px-8 mx-auto">
+      <div className="flex flex-col md:flex-row items-center justify-around gap-5 my-5 px-8 mx-auto">
         <div className="text-left flex-1">
           <p>
             {" "}

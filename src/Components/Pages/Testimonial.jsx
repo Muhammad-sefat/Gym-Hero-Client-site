@@ -32,11 +32,15 @@ const Testimonial = () => {
           modules={[Navigation, Pagination]}
           className="mySwiper"
         >
-          {reviews.map((review) => (
-            <SwiperSlide key={review._id} className="text-center">
-              <SingleReview review={review} />
-            </SwiperSlide>
-          ))}
+          <div>
+            {reviews.map((review) => (
+              <SwiperSlide key={review._id} className="text-center">
+                <div>
+                  <SingleReview review={review} />
+                </div>
+              </SwiperSlide>
+            ))}
+          </div>
         </Swiper>
       </div>
     </div>

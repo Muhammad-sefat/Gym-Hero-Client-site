@@ -3,22 +3,22 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "./Hooks/useAuth";
 import Container from "./Container";
 import logo from "../assets/gym.png";
+import "../App.css";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  console.log(user);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <div className=" w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
         <Container>
-          <div className="flex flex-row  items-center justify-between gap-3 md:gap-0">
+          <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
             {/* Logo */}
             <Link to="/">
               <div className="flex items-center">
                 <img
-                  // className='hidden md:block'
                   className="rounded"
                   src={logo}
                   alt="logo"
@@ -30,7 +30,19 @@ const Navbar = () => {
                 </p>
               </div>
             </Link>
-            <div className="space-x-4 font-medium">
+
+            {/* Hamburger menu for mobile view */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-2xl"
+              >
+                ☰
+              </button>
+            </div>
+
+            {/* Navigation links for larger screens */}
+            <div className="hidden md:flex space-x-4 font-medium">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
@@ -64,6 +76,7 @@ const Navbar = () => {
                 Community
               </NavLink>
             </div>
+
             {/* Dropdown Menu */}
             <div className="relative">
               <div className="flex flex-row items-center gap-3">
@@ -104,13 +117,13 @@ const Navbar = () => {
                       <>
                         <Link
                           to="/Dashboard"
-                          className="block  px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          className="block px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                         >
                           Dashboard
                         </Link>
                         <Link
                           to="/my-profile"
-                          className="block  px-4 py-3 hover:bg-neutral-100 transition font-semibold"
+                          className="block px-4 py-3 hover:bg-neutral-100 transition font-semibold"
                         >
                           My Profile
                         </Link>
@@ -142,6 +155,50 @@ const Navbar = () => {
               )}
             </div>
           </div>
+
+          {/* Mobile menu dropdown */}
+          {menuOpen && (
+            <div className="md:hidden absolute bg-white w-full shadow-lg mt-2 rounded-lg">
+              <div className="flex flex-col space-y-2 p-4">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive ? "active underline text-pink-500" : ""
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  to="/all-trainers"
+                  className={({ isActive }) =>
+                    isActive ? "active underline text-pink-500" : ""
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  All Trainers
+                </NavLink>
+                <NavLink
+                  to="/all-classes"
+                  className={({ isActive }) =>
+                    isActive ? "active underline text-pink-500" : ""
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  All Classes
+                </NavLink>
+                <NavLink
+                  to="/community"
+                  className={({ isActive }) =>
+                    isActive ? "active underline text-pink-500" : ""
+                  }
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Community
+                </NavLink>
+              </div>
+            </div>
+          )}
         </Container>
       </div>
     </div>

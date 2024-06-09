@@ -29,7 +29,7 @@ const SingleReview = ({ review }) => {
           <img
             src="https://source.unsplash.com/50x50/?portrait?1"
             alt=""
-            className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-300"
+            className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 "
           />
           <p className="text-xl font-semibold leading-tight">{review.name}</p>
           <p className="text-sm uppercase">{review.profession}</p>

@@ -27,6 +27,20 @@
   }
 }
 
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+
+.active {
+  font-weight: bold;
+}
+
+.hover\:bg-neutral-100:hover {
+  background-color: #f5f5f5;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
