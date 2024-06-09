@@ -9,7 +9,7 @@ const RecentForum = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic.get("posts");
+      const { data } = await axiosPublic.get("/posts");
       setForum(data);
     };
     return getData;

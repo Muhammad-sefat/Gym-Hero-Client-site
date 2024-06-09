@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import logo from "../../../../public/gym.png";
 import useRole from "../../Hooks/useRole";
@@ -10,12 +10,22 @@ import CommonMenu from "./Common/CommonMenu";
 import AdminMenu from "./Common/AdminMenu";
 import TrainerMenu from "./Common/TrainerMenu";
 import MemberMenu from "./Common/MemberMenu";
+import toast from "react-hot-toast";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
   const [isActive, setActive] = useState(false);
   const [role] = useRole();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
   console.log(role);
+
+  const handleLogOut = () => {
+    logOut();
+    toast.success("LogOut Successfull");
+    navigate(from);
+  };
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -88,7 +98,7 @@ const Sidebar = () => {
           <CommonMenu link="profile" title={"Profile"} icon={FcSettings} />
 
           <button
-            onClick={logOut}
+            onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />

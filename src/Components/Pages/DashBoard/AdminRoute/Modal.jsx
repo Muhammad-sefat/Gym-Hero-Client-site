@@ -5,16 +5,15 @@ import {
   DialogTitle,
   DialogPanel,
 } from "@headlessui/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 const Modal = ({ isModal, closeModal, handleModal, person }) => {
+  const [initialData, setInitialData] = useState("");
+  console.log(initialData);
+
   return (
     <Transition appear show={isModal} as={Fragment}>
-      <Dialog
-        as="div"
-        className="relative z-10"
-        onClose={() => closeModal(false)}
-      >
+      <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
@@ -69,6 +68,8 @@ const Modal = ({ isModal, closeModal, handleModal, person }) => {
                   <input
                     type="text"
                     placeholder="Admin Comment"
+                    value={initialData}
+                    onChange={(e) => setInitialData(e.target.value)}
                     className="border p-2 mt-3 rounded"
                   />
                 </div>
@@ -76,8 +77,8 @@ const Modal = ({ isModal, closeModal, handleModal, person }) => {
                 <div className="flex mt-2 justify-around">
                   <button
                     onClick={() => {
-                      handleModal(person?.status);
-                      closeModal(false);
+                      handleModal(initialData);
+                      closeModal();
                     }}
                     type="button"
                     className="inline-flex justify-center rounded-md border border-transparent bg-blue-300 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"

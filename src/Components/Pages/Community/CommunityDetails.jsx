@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import React, { useState } from "react";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const CommunityDetails = () => {
   const { name, author, long_description, image, views, date } =

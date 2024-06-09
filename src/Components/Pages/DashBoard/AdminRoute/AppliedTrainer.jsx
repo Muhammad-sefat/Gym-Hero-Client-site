@@ -6,6 +6,7 @@ import Modal from "./Modal";
 
 const AppliedTrainer = () => {
   const [isModal, closeModal] = useState(false);
+  const [data, setData] = useState("");
   const axiosPublic = useAxiosPublic();
   const { data: trainer = [], refetch } = useQuery({
     queryKey: ["trainer"],
@@ -14,9 +15,11 @@ const AppliedTrainer = () => {
       return data;
     },
   });
+  console.log(data);
 
   const handleModal = (value) => {
-    console.log(value);
+    setData(value);
+    closeModal(false);
   };
   return (
     <div>
@@ -82,7 +85,7 @@ const AppliedTrainer = () => {
                 <Modal
                   handleModal={handleModal}
                   isModal={isModal}
-                  closeModal={closeModal}
+                  closeModal={() => closeModal(false)}
                   person={person}
                 />
               </td>

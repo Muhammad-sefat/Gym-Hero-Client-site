@@ -11,7 +11,6 @@ const AllClasses = () => {
   const [allClasses, setAllClasses] = useState([]);
   const [search, setSearch] = useState("");
   const axiosPublic = useAxiosPublic();
-  console.log(search);
 
   useEffect(() => {
     const getData = async () => {
