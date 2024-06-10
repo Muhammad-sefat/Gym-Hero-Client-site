@@ -5,7 +5,6 @@ import SinglePost from "./Community/SinglePost";
 const RecentForum = () => {
   const [forum, setForum] = useState([]);
   const axiosPublic = useAxiosPublic();
-  console.log(forum);
 
   useEffect(() => {
     const getData = async () => {
@@ -14,7 +13,6 @@ const RecentForum = () => {
     };
     getData();
   }, []);
-  console.log(forum);
   return (
     <div>
       <p className="text-xl md:text-3xl font-bold my-5">

@@ -24,6 +24,7 @@ import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
 import RecommendedClasses from "./Pages/DashBoard/MemberRoute/RecommendedClasses";
 import ActiveLogPage from "./Pages/DashBoard/MemberRoute/ActiveLogPage";
 import PaymentPage from "./Pages/AllTrainers/PaymentPage";
+import Payment from "./Pages/AllTrainers/Payment";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "/payment",
         element: <PaymentPage></PaymentPage>,
+      },
+      {
+        path: "/Payment-page",
+        element: <Payment />,
       },
       {
         path: "/become-trainer",

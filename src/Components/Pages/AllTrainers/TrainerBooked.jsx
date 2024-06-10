@@ -31,7 +31,7 @@ const TrainerBooked = () => {
       classValue,
       price: selectedPackage.price,
       package_name: selectedPackage.type,
-      name: user?.name,
+      name: user?.displayName,
       email: user?.email,
     };
     navigate("/payment", { state: { info } });
