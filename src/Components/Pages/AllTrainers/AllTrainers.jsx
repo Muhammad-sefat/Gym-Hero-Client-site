@@ -12,7 +12,7 @@ const AllTrainers = () => {
       const { data } = await axiosPublic.get("/trainer");
       setTrainers(data);
     };
-    return getData;
+    getData();
   }, []);
 
   return (

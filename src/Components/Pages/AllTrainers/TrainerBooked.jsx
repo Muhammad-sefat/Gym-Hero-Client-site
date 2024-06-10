@@ -1,16 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchTrainerData from "../../Hooks/useFetchTrainerData";
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
 
 const TrainerBooked = () => {
   const { id, slot } = useParams();
-  const { trainer } = useFetchTrainerData(id);
-  console.log(trainer);
+  const { trainer, loading, error } = useFetchTrainerData(id);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [classValue, setClassValue] = useState([]);
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setClassValue(e.value);
+    setClassValue(e.target.value);
   };
 
   const handlePackageSelection = (pkg) => {
@@ -22,8 +24,21 @@ const TrainerBooked = () => {
     const form = e.target;
     const name = form.name.value;
     const slot = form.slot.value;
-    console.log(name, slot, selectedPackage, classValue);
+
+    const info = {
+      trainer_name: name,
+      slot,
+      classValue,
+      price: selectedPackage.price,
+      package_name: selectedPackage.type,
+      name: user?.name,
+      email: user?.email,
+    };
+    navigate("/payment", { state: { info } });
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
@@ -95,9 +110,10 @@ const TrainerBooked = () => {
                 id="class"
                 name="class"
                 className="w-full border border-blue-500 p-2 rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-blue-600 dark:border-gray-300"
+                onChange={handleChange}
               >
-                {trainer.classes.map((Class) => (
-                  <option key={Class._id} onChange={handleChange}>
+                {trainer?.classes?.map((Class) => (
+                  <option key={Class._id} value={Class}>
                     {Class}
                   </option>
                 ))}
@@ -105,7 +121,7 @@ const TrainerBooked = () => {
             </label>
             <div className="text-left">
               <p className="font-medium mb-2">Membership</p>
-              {trainer.packages.map((pkg, index) => (
+              {trainer?.packages?.map((pkg, index) => (
                 <p key={index}>
                   <input
                     type="checkbox"
@@ -118,6 +134,7 @@ const TrainerBooked = () => {
               ))}
             </div>
           </div>
+
           <button
             type="submit"
             className=" p-3 px-8 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500"

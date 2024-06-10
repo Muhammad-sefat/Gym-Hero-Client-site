@@ -19,7 +19,7 @@ const AllClasses = () => {
       );
       setAllClasses(data);
     };
-    return getData;
+    getData();
   }, [itemPerPage, filter, currentPage]);
 
   useEffect(() => {

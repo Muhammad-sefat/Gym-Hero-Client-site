@@ -11,7 +11,7 @@ const AllNewsLetter = () => {
       const { data } = await axiosSecure.get("/allnewsLetter");
       setNewsLetter(data);
     };
-    return getData;
+    getData();
   }, []);
 
   return (

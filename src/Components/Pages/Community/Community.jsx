@@ -17,7 +17,7 @@ const Community = () => {
       );
       setPosts(data);
     };
-    return getData;
+    getData();
   }, [itemPerPage, filter, currentPage]);
 
   useEffect(() => {

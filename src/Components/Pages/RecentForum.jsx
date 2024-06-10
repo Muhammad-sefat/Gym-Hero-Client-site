@@ -12,8 +12,9 @@ const RecentForum = () => {
       const { data } = await axiosPublic.get("/posts");
       setForum(data);
     };
-    return getData;
+    getData();
   }, []);
+  console.log(forum);
   return (
     <div>
       <p className="text-xl md:text-3xl font-bold my-5">

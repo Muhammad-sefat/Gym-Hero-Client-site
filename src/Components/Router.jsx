@@ -23,6 +23,7 @@ import AddClass from "./Pages/DashBoard/AdminRoute/AddClass";
 import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
 import RecommendedClasses from "./Pages/DashBoard/MemberRoute/RecommendedClasses";
 import ActiveLogPage from "./Pages/DashBoard/MemberRoute/ActiveLogPage";
+import PaymentPage from "./Pages/AllTrainers/PaymentPage";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/trainer-booked/:id/:slot",
         element: <TrainerBooked />,
+      },
+      {
+        path: "/payment",
+        element: <PaymentPage></PaymentPage>,
       },
       {
         path: "/become-trainer",

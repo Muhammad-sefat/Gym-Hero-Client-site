@@ -15,7 +15,6 @@ const useFetchTrainerData = (id) => {
           throw new Error("Failed to fetch trainer data");
         }
         const data = await response.json();
-        console.log(data);
         setTrainer(data);
       } catch (err) {
         setError(err.message);
