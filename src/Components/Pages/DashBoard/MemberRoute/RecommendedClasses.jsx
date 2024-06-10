@@ -1,21 +1,20 @@
-import { useEffect, useState } from "react";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
-const AllTrainerss = () => {
-  const [trainers, setTrainers] = useState([]);
+const RecommendedClasses = () => {
   const axiosPublic = useAxiosPublic();
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axiosPublic.get("/users/role/trainer");
-      setTrainers(data);
-    };
-    getData();
-  }, []);
-  console.log(trainers);
+
+  const { data: classes = [] } = useQuery({
+    queryKey: ["classes"],
+    queryFn: async () => {
+      const { data } = await axiosPublic("/recommended-class");
+      return data;
+    },
+  });
+  console.log(classes);
   return (
     <div>
-      <p className="text-3xl font-semibold my-5">Here Our All Trainers</p>
+      <p className="text-3xl font-semibold my-5">Recommended Classes</p>
       <table className="min-w-full leading-normal">
         <thead className="text-center">
           <tr>
@@ -25,23 +24,22 @@ const AllTrainerss = () => {
             >
               #
             </th>
-
             <th
               scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
+              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800   text-sm uppercase font-normal"
             >
-              Email
+              Name
             </th>
             <th
               scope="col"
               className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
             >
-              Role
+              Description
             </th>
           </tr>
         </thead>
         <tbody>
-          {trainers.map((person, index) => (
+          {classes.map((item, index) => (
             <tr
               key={index}
               className="text-center border-b border-gray-200 dark:border-gray-300 dark:bg-gray-100"
@@ -50,10 +48,10 @@ const AllTrainerss = () => {
                 <span>{index + 1}</span>
               </td>
               <td className="px-3 py-2">
-                <span>{person.email}</span>
+                <span>{item.name}</span>
               </td>
               <td className="px-3 py-2">
-                <span>{person.role}</span>
+                <span>{item.description}</span>
               </td>
             </tr>
           ))}
@@ -63,4 +61,4 @@ const AllTrainerss = () => {
   );
 };
 
-export default AllTrainerss;
+export default RecommendedClasses;

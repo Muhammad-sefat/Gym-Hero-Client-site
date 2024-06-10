@@ -21,6 +21,8 @@ import Profile from "./Pages/DashBoard/Profile";
 import MyProfile from "./Pages/MyProfile";
 import AddClass from "./Pages/DashBoard/AdminRoute/AddClass";
 import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
+import RecommendedClasses from "./Pages/DashBoard/MemberRoute/RecommendedClasses";
+import ActiveLogPage from "./Pages/DashBoard/MemberRoute/ActiveLogPage";
 
 const router = createBrowserRouter([
   {
@@ -32,10 +34,12 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+
       {
         path: "/all-trainers",
         element: <AllTrainers />,
       },
+
       {
         path: "/trainer-details/:id",
         element: <TrainerDetails />,
@@ -85,6 +89,7 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
     ],
   },
+
   {
     path: "/Dashboard",
     element: <DashBoardLayOut />,
@@ -116,6 +121,14 @@ const router = createBrowserRouter([
       {
         path: "Add-new-forum",
         element: <AddNewForum />,
+      },
+      {
+        path: "active-log-user",
+        element: <ActiveLogPage />,
+      },
+      {
+        path: "recommended-classes",
+        element: <RecommendedClasses />,
       },
       {
         path: "profile",

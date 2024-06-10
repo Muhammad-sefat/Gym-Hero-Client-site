@@ -6,7 +6,7 @@ const MemberMenu = () => {
   return (
     <div>
       <CommonMenu
-        link={"/Dashboard"}
+        link={"active-log-user"}
         title={"Activity Log Page"}
         icon={GrEject}
       />
