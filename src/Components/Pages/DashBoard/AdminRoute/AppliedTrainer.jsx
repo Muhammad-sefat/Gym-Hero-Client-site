@@ -30,7 +30,7 @@ const AppliedTrainer = () => {
           `/applied/trainers/${selectedPerson._id}/update-role`,
           {
             comment,
-            status: "Trainer",
+            status: "trainer",
           }
         );
         setIsModalOpen(false);
