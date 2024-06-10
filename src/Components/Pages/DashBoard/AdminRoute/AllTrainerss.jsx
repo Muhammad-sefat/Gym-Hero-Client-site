@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { axiosSecure } from "../../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { MdDelete } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const AllTrainerss = () => {
   const [trainers, setTrainers] = useState([]);
@@ -12,7 +13,20 @@ const AllTrainerss = () => {
     };
     getData();
   }, []);
-  console.log(trainers);
+
+  const handleActionClick = async (trainerId) => {
+    try {
+      await axiosPublic.put(`/api/trainers/${trainerId}/update-role`, {
+        role: "member",
+      });
+      setTrainers((prevTrainers) =>
+        prevTrainers.filter((trainer) => trainer._id !== trainerId)
+      );
+      toast.success("User Role Update Successfully");
+    } catch (error) {
+      console.error("Error updating trainer role:", error);
+    }
+  };
   return (
     <div>
       <p className="text-3xl font-semibold my-5">Here Our All Trainers</p>
@@ -38,6 +52,12 @@ const AllTrainerss = () => {
             >
               Role
             </th>
+            <th
+              scope="col"
+              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
+            >
+              Action
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +74,12 @@ const AllTrainerss = () => {
               </td>
               <td className="px-3 py-2">
                 <span>{person.role}</span>
+              </td>
+              <td className="px-3 py-2">
+                <MdDelete
+                  onClick={() => handleActionClick(person._id)}
+                  className="text-3xl mx-auto"
+                />
               </td>
             </tr>
           ))}
