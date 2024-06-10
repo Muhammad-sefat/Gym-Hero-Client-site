@@ -19,7 +19,6 @@ const Sidebar = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  console.log(role);
 
   const handleLogOut = () => {
     logOut();

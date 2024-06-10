@@ -3,11 +3,13 @@ import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { FiEye } from "react-icons/fi";
 import Modal from "./Modal";
+import toast from "react-hot-toast";
 
 const AppliedTrainer = () => {
-  const [isModal, closeModal] = useState(false);
-  const [data, setData] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPerson, setSelectedPerson] = useState(null);
   const axiosPublic = useAxiosPublic();
+
   const { data: trainer = [], refetch } = useQuery({
     queryKey: ["trainer"],
     queryFn: async () => {
@@ -15,12 +17,31 @@ const AppliedTrainer = () => {
       return data;
     },
   });
-  console.log(data);
 
-  const handleModal = (value) => {
-    setData(value);
-    closeModal(false);
+  const handleModal = (person) => {
+    setSelectedPerson(person);
+    setIsModalOpen(true);
   };
+
+  const handleConfirm = async (comment) => {
+    if (selectedPerson) {
+      try {
+        await axiosPublic.put(
+          `/applied/trainers/${selectedPerson._id}/update-role`,
+          {
+            comment,
+            status: "Trainer",
+          }
+        );
+        setIsModalOpen(false);
+        toast.success("User Status Update Successfully");
+        refetch();
+      } catch (error) {
+        toast.error(error.message);
+      }
+    }
+  };
+
   return (
     <div>
       <p className="text-3xl font-semibold my-5">Requested Trainers</p>
@@ -28,34 +49,19 @@ const AppliedTrainer = () => {
       <table className="min-w-full leading-normal">
         <thead className="text-center">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
+            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
               #
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800   text-sm uppercase font-normal"
-            >
+            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
               Name
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
+            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
               Email
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
+            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
               Status
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800   text-sm uppercase font-normal"
-            >
+            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
               Action
             </th>
           </tr>
@@ -79,20 +85,23 @@ const AppliedTrainer = () => {
                 <span>{person.status}</span>
               </td>
               <td className="px-3 py-2">
-                <button onClick={() => closeModal(true)}>
+                <button onClick={() => handleModal(person)}>
                   <FiEye className="text-3xl mx-auto" />
                 </button>
-                <Modal
-                  handleModal={handleModal}
-                  isModal={isModal}
-                  closeModal={() => closeModal(false)}
-                  person={person}
-                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {selectedPerson && (
+        <Modal
+          isModalOpen={isModalOpen}
+          closeModal={() => setIsModalOpen(false)}
+          handleConfirm={handleConfirm}
+          person={selectedPerson}
+        />
+      )}
     </div>
   );
 };

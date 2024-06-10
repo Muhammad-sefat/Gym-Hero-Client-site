@@ -7,12 +7,11 @@ import {
 } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
-const Modal = ({ isModal, closeModal, handleModal, person }) => {
-  const [initialData, setInitialData] = useState("");
-  console.log(initialData);
+const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
+  const [comment, setComment] = useState("");
 
   return (
-    <Transition appear show={isModal} as={Fragment}>
+    <Transition appear show={isModalOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
         <TransitionChild
           as={Fragment}
@@ -37,7 +36,10 @@ const Modal = ({ isModal, closeModal, handleModal, person }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <DialogPanel
+                className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <DialogTitle
                   as="h3"
                   className="text-lg font-medium text-center leading-6 text-gray-900"
@@ -61,15 +63,15 @@ const Modal = ({ isModal, closeModal, handleModal, person }) => {
                   </p>
                   <p className="text-sm text-gray-500">
                     <span className="font-medium"> Skill :</span>
-                    {person.isChecked.map((skill) => (
-                      <li>{skill}</li>
+                    {person.isChecked.map((skill, index) => (
+                      <li key={index}>{skill}</li>
                     ))}
                   </p>
                   <input
                     type="text"
                     placeholder="Admin Comment"
-                    value={initialData}
-                    onChange={(e) => setInitialData(e.target.value)}
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
                     className="border p-2 mt-3 rounded"
                   />
                 </div>
@@ -77,7 +79,7 @@ const Modal = ({ isModal, closeModal, handleModal, person }) => {
                 <div className="flex mt-2 justify-around">
                   <button
                     onClick={() => {
-                      handleModal(initialData);
+                      handleConfirm(comment);
                       closeModal();
                     }}
                     type="button"
