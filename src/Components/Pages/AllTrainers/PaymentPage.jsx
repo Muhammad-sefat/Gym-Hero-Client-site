@@ -1,22 +1,13 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
+
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_SECRET_KEY);
+import CheckoutForm from "./CheckOutForm";
 
 const PaymentPage = () => {
   const location = useLocation();
   const user = location.state?.info;
-  const axiospublic = useAxiosPublic();
-  const navigate = useNavigate();
-
-  const handleSubmit = async () => {
-    try {
-      await axiospublic.post("/payment", user);
-      toast.success("Save Payment Data Successfully");
-      navigate("/");
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
 
   return (
     <div>
@@ -46,18 +37,16 @@ const PaymentPage = () => {
               <span className="text-xl font-semibold"> Class Name :</span>{" "}
               {user?.classValue}
             </p>
-            <p className="text-lg dark:text-gray-600">
+            <p className="text-lg dark:text-gray-600 pb-5">
               <span className="text-xl font-semibold"> Slot Time :</span>{" "}
               {user?.slot}
             </p>
 
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="border py-2 px-3 rounded mt-3 font-medium bg-pink-300"
-            >
-              Confirm
-            </button>
+            {/* payment */}
+            <Elements stripe={stripePromise}>
+              {/* checkout form */}
+              <CheckoutForm Info={user} />
+            </Elements>
           </div>
         </div>
       </div>
