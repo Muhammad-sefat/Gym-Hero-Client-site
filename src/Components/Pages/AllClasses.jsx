@@ -15,20 +15,23 @@ const AllClasses = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosPublic.get(
-        `/allClass?page=${currentPage}&size=${itemPerPage}&filter=${filter}`
+        `/allClass?page=${currentPage}&size=${itemPerPage}&filter=${filter}&search=${search}`
       );
-      setAllClasses(data);
+      setAllClasses(data.classes);
+      setCount(data.count);
     };
     getData();
-  }, [itemPerPage, filter, currentPage]);
+  }, [itemPerPage, filter, currentPage, search]);
 
   useEffect(() => {
     const getCount = async () => {
-      const { data } = await axiosPublic.get(`/class-count?filter=${filter}`);
+      const { data } = await axiosPublic.get(
+        `/class-count?filter=${filter}&search=${search}`
+      );
       setCount(data.count);
     };
     getCount();
-  }, [filter]);
+  }, [filter, search]);
 
   const numberOfPage = Math.ceil(count / itemPerPage);
 
@@ -37,6 +40,7 @@ const AllClasses = () => {
   const handlePagination = (value) => {
     setCurrentPage(value);
   };
+
   return (
     <div>
       <Helmet>
@@ -54,15 +58,9 @@ const AllClasses = () => {
         </div>
       </form>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 my-5">
-        {allClasses
-          .filter((item) => {
-            return search.toLocaleLowerCase() === ""
-              ? item
-              : item.name.toLocaleLowerCase().includes(search);
-          })
-          .map((allClass) => (
-            <SingleClass key={allClass._id} allClass={allClass} />
-          ))}
+        {allClasses.map((allClass) => (
+          <SingleClass key={allClass._id} allClass={allClass} />
+        ))}
       </div>
       <div className="flex justify-center my-12">
         <button
