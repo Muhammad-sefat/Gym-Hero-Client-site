@@ -112,8 +112,8 @@ const CheckoutForm = ({ Info }) => {
       try {
         const { data } = await axiosPublic.post("/payment", paymentInfo);
         console.log("Payment data saved:", data);
-        toast.success("Trainer Booked & Payment Successfull");
-        navigate("/");
+        toast.success("Trainer Booked & Payment Successfully");
+        navigate("/all-trainers");
       } catch (error) {
         console.error("Error saving payment info:", error);
       }
