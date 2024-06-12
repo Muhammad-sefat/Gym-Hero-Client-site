@@ -33,7 +33,7 @@ const AddNewSlot = () => {
     console.log(slotData);
     try {
       await axiosSecure.post("/slots", slotData);
-      toast.success("Slot added successfully");
+      toast.success("Slot Added Successfully");
       reset();
     } catch (error) {
       toast.error("Failed to add slot");

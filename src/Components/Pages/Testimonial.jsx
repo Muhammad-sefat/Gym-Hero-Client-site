@@ -9,7 +9,7 @@ import SingleReview from "./SingleReview";
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    fetch("https://gym-hero-server.vercel.app/review")
+    fetch("http://localhost:5000/review")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

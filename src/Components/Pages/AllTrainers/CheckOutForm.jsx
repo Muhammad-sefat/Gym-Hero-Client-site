@@ -10,6 +10,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 const CheckoutForm = ({ Info }) => {
   const stripe = useStripe();
   const elements = useElements();
+
   const { user } = useAuth();
   const [clientSecret, setClientSecret] = useState();
   const [cardError, setCardError] = useState("");
@@ -18,13 +19,16 @@ const CheckoutForm = ({ Info }) => {
   const navigate = useNavigate();
 
   const extractPrice = (priceString) => {
-    const match = priceString.match(/\$([\d.]+)/);
-    return match ? parseFloat(match[1]) : 0;
+    const match = priceString?.match(/\$(\d+)/);
+    if (match) {
+      const priceValue = match[1];
+      return parseInt(priceValue, 10);
+    }
+    return 0;
   };
 
   const getSecretClientData = async (priceString) => {
     const price = extractPrice(priceString);
-    console.log(price);
     try {
       const { data } = await axiosPublic.post("/create-payment-intent", {
         price,
@@ -40,10 +44,8 @@ const CheckoutForm = ({ Info }) => {
   };
 
   useEffect(() => {
-    if (Info?.price > 0) {
-      getSecretClientData(Info?.price);
-    }
-  }, [Info?.price]);
+    getSecretClientData(Info?.price);
+  }, [Info]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -110,7 +112,7 @@ const CheckoutForm = ({ Info }) => {
       try {
         const { data } = await axiosPublic.post("/payment", paymentInfo);
         console.log("Payment data saved:", data);
-        toast.success("Trainer Booked Successfully");
+        toast.success("Trainer Booked & Payment Successfull");
         navigate("/");
       } catch (error) {
         console.error("Error saving payment info:", error);
