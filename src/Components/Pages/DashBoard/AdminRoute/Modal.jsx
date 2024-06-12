@@ -5,11 +5,13 @@ import {
   DialogTitle,
   DialogPanel,
 } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
   const [comment, setComment] = useState("");
-
+  useEffect(() => {
+    setComment(""); // Reset the comment state when the modal opens
+  }, [isModalOpen]);
   return (
     <Transition appear show={isModalOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -90,7 +92,10 @@ const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
                   <button
                     type="button"
                     className="inline-flex justify-center rounded-md border border-transparent bg-pink-300 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
-                    onClick={closeModal}
+                    onClick={() => {
+                      handleConfirm("Rejected", comment);
+                      closeModal();
+                    }}
                   >
                     Reject
                   </button>

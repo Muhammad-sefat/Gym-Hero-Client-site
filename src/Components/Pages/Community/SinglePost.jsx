@@ -4,8 +4,8 @@ const SinglePost = ({ post }) => {
   return (
     <Link to={`/community_details/${post._id}`}>
       <section className="py-6 sm:py-12 dark:bg-gray-100 dark:text-gray-800">
-        <div className="container p-6 mx-auto space-y-8">
-          <article className="flex flex-col dark:bg-gray-50 text-left border border-pink-500 rounded hover:scale-110 transition">
+        <div className=" container p-6 mx-auto space-y-8">
+          <article className=" relative flex flex-col dark:bg-gray-50 text-left border border-pink-500 rounded hover:scale-110 transition">
             <a
               rel="noopener noreferrer"
               href="#"
@@ -16,6 +16,9 @@ const SinglePost = ({ post }) => {
                 className="object-cover w-full h-52 dark:bg-gray-500"
                 src={post.image}
               />
+              <p className="absolute top-0 right-0 m-2 p-1 bg-pink-500 rounded">
+                {post.badge}
+              </p>
             </a>
             <div className="flex flex-col flex-1 p-6">
               <a

@@ -24,6 +24,7 @@ const AppliedTrainer = () => {
   };
 
   const handleConfirm = async (comment) => {
+    console.log(comment);
     if (selectedPerson) {
       try {
         await axiosPublic.put(
