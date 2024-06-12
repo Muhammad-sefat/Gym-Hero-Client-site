@@ -24,6 +24,7 @@ import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
 import RecommendedClasses from "./Pages/DashBoard/MemberRoute/RecommendedClasses";
 import ActiveLogPage from "./Pages/DashBoard/MemberRoute/ActiveLogPage";
 import PaymentPage from "./Pages/AllTrainers/PaymentPage";
+import AddNewSlot from "./Pages/DashBoard/TrainerRoute/AddNewSlot";
 
 const router = createBrowserRouter([
   {
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "Add-new-forum",
         element: <AddNewForum />,
+      },
+      {
+        path: "Add-new-slot",
+        element: <AddNewSlot />,
       },
       {
         path: "active-log-user",
