@@ -44,7 +44,7 @@ const AdminMenu = () => {
         icon={MdAddComment}
       />
       {/* Balance */}
-      <CommonMenu link="balance" title={"Balance"} icon={MdAccountBalance} />
+      <CommonMenu link={"balance"} title={"Balance"} icon={MdAccountBalance} />
     </div>
   );
 };

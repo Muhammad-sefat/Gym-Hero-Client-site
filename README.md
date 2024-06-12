@@ -1,11 +1,4 @@
-
 # Gym Hero
-
-
-
-
-
-
 
 ## Features
 
@@ -18,15 +11,8 @@
 - Make Dashboard and Admin,Trainer,Member.
 - Use Text Base Search Funtionlity.
 
-
 #### Assignment_ID: assignment12_category_0010
 
-
-
-
-
-
-
 ## 🔗 Links
-Live Link : https://gym-hero-client.web.app/
 
+Live Link : https://gym-hero-server.vercel.app/

@@ -8,7 +8,9 @@ const useFetchTrainerData = (id) => {
   useEffect(() => {
     const fetchTrainerData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/trainers/${id}`);
+        const response = await fetch(
+          `https://gym-hero-server.vercel.app/trainers/${id}`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch trainer data");
         }

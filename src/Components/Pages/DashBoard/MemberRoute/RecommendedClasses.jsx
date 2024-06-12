@@ -7,14 +7,16 @@ const RecommendedClasses = () => {
   const { data: classes = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const { data } = await axiosPublic("/recommended-class");
+      const { data } = await axiosPublic.get("/recommended-class");
       return data;
     },
   });
   console.log(classes);
   return (
     <div>
-      <p className="text-3xl font-semibold my-5">Recommended Classes</p>
+      <p className="text-3xl font-semibold my-5">
+        Recommended Classes by Admin
+      </p>
       <table className="min-w-full leading-normal">
         <thead className="text-center">
           <tr>

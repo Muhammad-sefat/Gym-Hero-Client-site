@@ -10,7 +10,7 @@ import { Fragment, useEffect, useState } from "react";
 const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
   const [comment, setComment] = useState("");
   useEffect(() => {
-    setComment(""); // Reset the comment state when the modal opens
+    setComment("");
   }, [isModalOpen]);
   return (
     <Transition appear show={isModalOpen} as={Fragment}>
@@ -93,7 +93,6 @@ const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
                     type="button"
                     className="inline-flex justify-center rounded-md border border-transparent bg-pink-300 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
                     onClick={() => {
-                      handleConfirm("Rejected", comment);
                       closeModal();
                     }}
                   >

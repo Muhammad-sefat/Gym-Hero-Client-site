@@ -27,6 +27,7 @@ const AllTrainerss = () => {
       console.error("Error updating trainer role:", error);
     }
   };
+
   return (
     <div>
       <p className="text-3xl font-semibold my-5">Here Our All Trainers</p>

@@ -5,7 +5,6 @@ const Balance = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [recentTransactions, setRecentTransactions] = useState([]);
   const axioxSecure = useAxiosSecure();
-  console.log(totalPrice);
 
   useEffect(() => {
     const fetchData = async () => {
