@@ -11,7 +11,6 @@
 - Make Dashboard and Admin,Trainer,Member.
 - Use Text Base Search Funtionlity.
 
-#### Assignment_ID: assignment12_category_0010
 
 ## 🔗 Links
 
