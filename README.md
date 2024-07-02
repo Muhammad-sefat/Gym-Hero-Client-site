@@ -14,4 +14,4 @@
 
 ## 🔗 Links
 
-Live Link : https://gym-hero-server.vercel.app/
+Live Link : [https://gym-hero-client.web.app/]
