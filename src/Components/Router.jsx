@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         path: "/trainer-details/:id",
         element: <TrainerDetails />,
         loader: ({ params }) =>
-          fetch(`https://gym-hero-server.vercel.app/trainers/${params.id}`),
+          fetch(`https://gym-hero-server.vercel.apptrainers/${params.id}`),
       },
 
       {
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
         path: "/class-trainer-details/:id",
         element: <ClassTrainerDetails />,
         loader: ({ params }) =>
-          fetch(`https://gym-hero-server.vercel.app/allClass/${params.id}`),
+          fetch(`https://gym-hero-server.vercel.appallClass/${params.id}`),
       },
       {
         path: "/community",
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
         element: <CommunityDetails />,
         loader: ({ params }) =>
           fetch(
-            `https://gym-hero-server.vercel.app/community-details/${params.id}`
+            `https://gym-hero-server.vercel.appcommunity-details/${params.id}`
           ),
       },
       {

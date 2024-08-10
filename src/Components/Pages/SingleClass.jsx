@@ -18,7 +18,7 @@ const SingleClass = ({ allClass }) => {
             </span>
           </div>
           <div className="space-y-1 flex items-center justify-center gap-2">
-            {allClass.trainers?.map((trainer) => (
+            {allClass?.trainers?.map((trainer) => (
               <Link to={`/class-trainer-details/${trainer._id}`}>
                 <img className="h-8 w-8 rounded-full" src={trainer.image} />
               </Link>

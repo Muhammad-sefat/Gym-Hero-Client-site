@@ -16,7 +16,6 @@ const Register = () => {
     const email = form.email.value;
     const image = form.image.value;
     const password = form.password.value;
-    console.log(name, email, image, password);
     try {
       const result = await createUser(email, password);
 
