@@ -20,7 +20,7 @@ const Login = () => {
       toast.success("SignUp Successful");
       navigate(from);
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message || "An error occurred");
     }
   };
   const handleSignin = async () => {
@@ -28,8 +28,8 @@ const Login = () => {
       await signInWithGoogle();
       toast.success("SignUp Successful");
       navigate(from);
-    } catch (err) {
-      toast.error(err);
+    } catch (error) {
+      toast.error(error.message || "An error occurred");
     }
   };
   return (

@@ -1,17 +1,36 @@
 import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const Balance = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [recentTransactions, setRecentTransactions] = useState([]);
-  const axioxSecure = useAxiosSecure();
+  const [newsLetter, setNewsLetter] = useState([]);
+  const [paidMembers, setPaidMembers] = useState(0);
+  const axiosSecure = useAxiosSecure();
+
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axiosSecure.get("/allnewsLetter");
+      setNewsLetter(data);
+    };
+    getData();
+  }, []);
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axiosSecure.get("/paidMember");
+      setPaidMembers(data);
+    };
+    getData();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axioxSecure.get("/transactions-summary");
+        const { data } = await axiosSecure.get("/transactions-summary");
         setTotalPrice(data.totalPrice);
         setRecentTransactions(data.recentTransactions);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching transaction summary:", error);
       }
@@ -19,6 +38,13 @@ const Balance = () => {
 
     fetchData();
   }, []);
+
+  const chartData = [
+    { name: "Newsletter Subscribers", value: newsLetter.length },
+    { name: "Paid Members", value: paidMembers },
+  ];
+
+  const COLORS = ["#0088FE", "#00C49F"];
 
   return (
     <div>
@@ -79,6 +105,31 @@ const Balance = () => {
           ))}
         </tbody>
       </table>
+
+      <div>
+        {/* Pie Chart */}
+        <PieChart width={400} height={400}>
+          <Pie
+            data={chartData}
+            cx={200}
+            cy={200}
+            labelLine={false}
+            label
+            outerRadius={150}
+            fill="#8884d8"
+            dataKey="value"
+          >
+            {chartData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend />
+        </PieChart>
+      </div>
     </div>
   );
 };

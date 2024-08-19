@@ -49,11 +49,9 @@ const CheckoutForm = ({ Info }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(clientSecret);
     setProcessing(true);
 
     if (!stripe || !elements) {
-      console.log("Stripe or elements not loaded");
       setProcessing(false);
       return;
     }
@@ -61,12 +59,10 @@ const CheckoutForm = ({ Info }) => {
     const card = elements.getElement(CardElement);
 
     if (card == null) {
-      console.log("Card element not found");
       setProcessing(false);
       return;
     }
 
-    console.log("Creating payment method...");
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,

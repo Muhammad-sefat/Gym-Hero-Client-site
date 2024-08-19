@@ -11,7 +11,6 @@ const RecommendedClasses = () => {
       return data;
     },
   });
-  console.log(classes);
   return (
     <div>
       <p className="text-3xl font-semibold my-5">
