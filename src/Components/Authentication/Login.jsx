@@ -16,24 +16,20 @@ const Login = () => {
     const email = froom.email.value;
     const password = froom.password.value;
     try {
-      const result = await signIn(email, password);
-
-      console.log(result);
-
+      await signIn(email, password);
       toast.success("SignUp Successful");
       navigate(from);
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
   const handleSignin = async () => {
     try {
-      const result = await signInWithGoogle();
-      console.log(result);
+      await signInWithGoogle();
       toast.success("SignUp Successful");
       navigate(from);
     } catch (err) {
-      toast(err.message);
+      toast.error(err);
     }
   };
   return (

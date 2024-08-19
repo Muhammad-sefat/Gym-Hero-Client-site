@@ -14,8 +14,7 @@ const NewsLetter = () => {
       email,
     };
     try {
-      const { data } = await axiosPublic.post("/newsLetter", user);
-      console.log(data);
+      await axiosPublic.post("/newsLetter", user);
       toast.success("Save Successfully");
       form.reset();
     } catch (error) {

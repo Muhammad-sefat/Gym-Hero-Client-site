@@ -46,7 +46,7 @@ const AllClasses = () => {
       <Helmet>
         <title>Gym Hero || All Classes</title>
       </Helmet>
-      <h1 className="text-3xl font-semibold mb-5">Our All Classes</h1>
+      <h1 className="text-5xl font-semibold mb-5">Our All Classes</h1>
       <form>
         <div>
           <input

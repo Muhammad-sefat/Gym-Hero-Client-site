@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 
 const AllTrainerss = () => {
   const [trainers, setTrainers] = useState([]);
+  console.log(trainers);
   const axiosPublic = useAxiosPublic();
   useEffect(() => {
     const getData = async () => {
@@ -30,7 +31,7 @@ const AllTrainerss = () => {
 
   return (
     <div>
-      <p className="text-3xl font-semibold my-5">Here Our All Trainers</p>
+      <p className="text-4xl font-semibold my-5">Here Our All Trainers</p>
       <table className="min-w-full leading-normal">
         <thead className="text-center">
           <tr>

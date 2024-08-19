@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const AllNewsLetter = () => {
   const [newsLetter, setNewsLetter] = useState([]);
   const axiosSecure = useAxiosSecure();
-  console.log(newsLetter);
 
   useEffect(() => {
     const getData = async () => {
