@@ -100,10 +100,7 @@ const Navbar = () => {
                         width="30"
                       />
                     ) : (
-                      <Link
-                        to="/login"
-                        className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                      >
+                      <Link to="/login" className="px-4 py-3 font-semibold">
                         Login
                       </Link>
                     )}
@@ -136,12 +133,6 @@ const Navbar = () => {
                       </>
                     ) : (
                       <>
-                        <Link
-                          to="/login"
-                          className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"
-                        >
-                          Login
-                        </Link>
                         <Link
                           to="/register"
                           className="px-4 py-3 hover:bg-neutral-100 transition font-semibold"

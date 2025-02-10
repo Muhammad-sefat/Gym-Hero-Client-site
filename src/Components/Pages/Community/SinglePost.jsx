@@ -2,44 +2,32 @@ import { Link } from "react-router-dom";
 
 const SinglePost = ({ post }) => {
   return (
-    <Link to={`/community_details/${post._id}`}>
-      <section className="py-6 sm:py-12 dark:bg-gray-100 dark:text-gray-800">
-        <div className=" container p-6 mx-auto space-y-8">
-          <article className=" relative flex flex-col dark:bg-gray-50 text-left border border-pink-500 rounded hover:scale-110 transition">
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              aria-label="Te nulla oportere reprimique his dolorum"
-            >
+    <Link to={`/community_details/${post._id}`} className="block">
+      <section className=" dark:bg-gray-100 dark:text-gray-800">
+        <div className="container p-6 mx-auto h-full">
+          <article className="relative flex flex-col bg-white dark:bg-gray-50 text-left border border-pink-500 rounded-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-300 h-full">
+            <div className="relative h-full">
               <img
-                alt=""
-                className="object-cover w-full h-52 dark:bg-gray-500"
+                alt="Post Thumbnail"
+                className="object-cover w-full h-52 rounded-t-lg"
                 src={post.image}
               />
-              <p className="absolute top-0 right-0 m-2 p-1 bg-pink-500 rounded">
+              <p className="absolute top-2 right-2 bg-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                 {post.badge}
               </p>
-            </a>
+            </div>
+
             <div className="flex flex-col flex-1 p-6">
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                aria-label="Te nulla oportere reprimique his dolorum"
-              ></a>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="text-base font-medium tracking-wider uppercase hover:underline dark:text-violet-600"
-              >
-                {post.name}
-              </a>
-              <p>{post.author}</p>
-              <h3 className="flex-1 py-2 text-sm font-semibold leading-snug">
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-800 hover:text-pink-500 transition-colors">
                 {post.title}
               </h3>
-              <div className="flex flex-wrap justify-between pt-3 space-x-2 text-base font-medium dark:text-gray-600">
-                <span> Date : {post.date}</span>
-                <span>{post.views} Views</span>
+              <p className="text-gray-600 text-sm dark:text-gray-700 mt-1">
+                by <span className="font-semibold">{post.author}</span>
+              </p>
+
+              <div className="flex flex-wrap justify-between items-center mt-3 text-sm font-medium text-gray-700 dark:text-gray-600">
+                <span className="text-pink-600">📅 {post.date}</span>
+                <span>👀 {post.views} Views</span>
               </div>
             </div>
           </article>

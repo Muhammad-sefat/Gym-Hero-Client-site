@@ -15,10 +15,10 @@ const RecentForum = () => {
   }, []);
   return (
     <div>
-      <p className="text-xl md:text-3xl font-bold my-5">
+      <p className="text-xl  md:text-5xl font-bold my-6 md:pb-8 underline">
         Recent Community Post
       </p>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3">
         {forum.slice(0, 6).map((post) => (
           <SinglePost key={post._id} post={post} />
         ))}

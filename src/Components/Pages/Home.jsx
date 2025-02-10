@@ -16,9 +16,9 @@ const Home = () => {
       <Carousel />
       <Feature />
       <AboutUs />
-      <OurTeam />
-      <Testimonial />
       <RecentForum />
+      <Testimonial />
+      <OurTeam />
       <NewsLetter />
     </div>
   );
