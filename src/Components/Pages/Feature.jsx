@@ -9,17 +9,19 @@ const Feature = () => {
     <div>
       <section className="m-4 md:m-8 dark:bg-gray-100 dark:text-gray-800">
         <div className="container mx-auto p-4 my-6 space-y-2 text-center">
-          <h2 className="text-5xl font-bold mb-2">Our Latest Features</h2>
-          <p className="p-5 md:w-[80%] mx-auto dark:text-gray-600">
+          <h2 className="text-3xl md:text-5xl font-bold mb-2 underline">
+            Our Latest Features
+          </h2>
+          <p className="p-5 md:w-[90%] text-lg mx-auto dark:text-gray-600">
             {" "}
             A well-designed feature section not only informs and educates
             visitors but also persuades and motivates them to take the next
             step, whether that’s visiting the gym, signing up for a membership,
-            or contacting for more information
+            or contacting for more information.
           </p>
         </div>
         <div className="container mx-auto grid justify-center gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[200px]" src={feature1} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Personalized Workout Plans
@@ -31,7 +33,7 @@ const Feature = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[150px]" src={feature2} alt="" />
             <h3 className="my-3 text-3xl font-semibold">Expert Trainers</h3>
             <div className="space-y-1 leading-tight">
@@ -41,19 +43,19 @@ const Feature = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[150px]" src={feature3} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               State-of-the-Art Equipment
             </h3>
-            <div className="space-y-1 leading-tight">
+            <div className="space-y-1 leading-tight hover:border rounded hover:shadow-lg">
               <p>
                 Elevate Your Workout Experience with the Latest State-of-the-Art
                 Gym Equipment
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[200px]" src={feature4} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Nutritional Guidance
@@ -65,7 +67,7 @@ const Feature = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[150px]" src={feature5} alt="" />
             <h3 className="my-3 text-3xl font-semibold">
               Group Fitness Classes
@@ -77,7 +79,7 @@ const Feature = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center p-4">
+          <div className="flex flex-col items-center p-4 hover:border rounded hover:shadow-lg">
             <img className="w-[120px]" src={feature6} alt="" />
             <h3 className="my-3 text-3xl font-semibold">Progress Tracking</h3>
             <div className="space-y-1 leading-tight">

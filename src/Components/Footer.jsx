@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
         <div className="lg:w-1/3">
           <Link to="/">
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <img
                 // className='hidden md:block'
                 className="rounded"
@@ -15,11 +15,16 @@ const Footer = () => {
                 width="50"
                 height="30"
               />
+
               <p className="text-xl md:text-3xl font-bold gap-0">
                 Gym<span className="text-blue-600">Hero</span>
               </p>
             </div>
           </Link>
+          <p className="text-base text-left mt-2 text-black">
+            Your fitness journey starts here. Achieve your goals with Gym Hero
+            trainers and programs.
+          </p>
         </div>
         <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
           <div className="space-y-3">
@@ -92,7 +97,7 @@ const Footer = () => {
             <div className="uppercase font-medium dark:text-gray-900">
               Social media
             </div>
-            <div className="flex justify-start space-x-3">
+            <div className="flex justify-center space-x-3">
               <a
                 rel="noopener noreferrer"
                 href="#"
@@ -142,7 +147,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-600">
-        © 2024 Company Co. All rights reserved.
+        &copy; {new Date().getFullYear()} Gym Hero. All rights reserved.
       </div>
     </footer>
   );
