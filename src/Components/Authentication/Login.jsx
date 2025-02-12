@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
@@ -6,12 +6,14 @@ import login from "../../assets/login01.jpg";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
 
   const handleForm = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const froom = e.target;
     const email = froom.email.value;
     const password = froom.password.value;
@@ -22,6 +24,7 @@ const Login = () => {
     } catch (error) {
       toast.error(error.message || "An error occurred");
     }
+    setLoading(false);
   };
   const handleSignin = async () => {
     try {
@@ -66,8 +69,11 @@ const Login = () => {
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>
-          <button className="block w-full p-3 font-medium text-center border border-blue-600 rounded-lg dark:text-gray-50 dark:bg-violet-600">
-            Sign in
+          <button
+            disabled={loading}
+            className="block w-full p-3 font-medium text-center border border-blue-600 rounded-lg dark:text-gray-50 dark:bg-violet-600"
+          >
+            {loading ? "Loading..." : "Login"}
           </button>
         </form>
         <div className="flex items-center pt-4 space-x-1">

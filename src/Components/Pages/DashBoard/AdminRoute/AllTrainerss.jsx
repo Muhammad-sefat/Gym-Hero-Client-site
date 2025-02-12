@@ -5,7 +5,6 @@ import toast from "react-hot-toast";
 
 const AllTrainerss = () => {
   const [trainers, setTrainers] = useState([]);
-  console.log(trainers);
   const axiosPublic = useAxiosPublic();
   useEffect(() => {
     const getData = async () => {
@@ -75,7 +74,7 @@ const AllTrainerss = () => {
                 <span>{person.email}</span>
               </td>
               <td className="px-3 py-2">
-                <span>{person.role}</span>
+                <span>{person.status}</span>
               </td>
               <td className="px-3 py-2">
                 <MdDelete

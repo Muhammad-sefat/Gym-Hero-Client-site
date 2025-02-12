@@ -83,7 +83,7 @@ const TrainerDetails = () => {
               rel="noopener noreferrer"
               href="#"
               title="Facebook"
-              className="flex items-center p-1"
+              className="flex items-center p-1  hover:border-2 hover:rounded-full"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@ const TrainerDetails = () => {
               rel="noopener noreferrer"
               href="#"
               title="Twitter"
-              className="flex items-center p-1"
+              className="flex items-center p-1 hover:border-2 hover:rounded-full"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -112,7 +112,7 @@ const TrainerDetails = () => {
               rel="noopener noreferrer"
               href="#"
               title="Instagram"
-              className="flex items-center p-1"
+              className="flex items-center p-1 hover:border-2 hover:rounded-full"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

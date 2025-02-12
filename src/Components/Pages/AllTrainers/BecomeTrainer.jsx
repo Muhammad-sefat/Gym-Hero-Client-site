@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import Select from "react-select";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import { uploadImageToImgBB } from "../../Provider/UploadImages";
 
 const options = [
   { value: "Saturday", label: "Saturday" },
@@ -16,6 +17,9 @@ const options = [
 const BecomeTrainer = () => {
   const [isChecked, setIsChecked] = useState([]);
   const [available_day, setSelectedValue] = useState("");
+  const [imageFile, setImageFile] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
@@ -32,40 +36,62 @@ const BecomeTrainer = () => {
   const handleChanges = (event) => {
     setSelectedValue(event.value);
   };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImageFile(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const image = form.image.value;
-    const age = form.age.value;
-    const number = form.number.value;
-    const time = form.time.value;
-    const trainer = {
-      name,
-      email,
-      image,
-      age,
-      number,
-      available_time: time,
-      available_day,
-      isChecked,
-      status: "pending",
-    };
+    setLoading(true);
+
+    if (!imageFile) {
+      toast.error("Please select an image.");
+      return;
+    }
+
+    setUploading(true);
     try {
-      const { data } = await axiosPublic.post("/appliedTrainer", trainer);
-      console.log(data);
+      const imageUrl = await uploadImageToImgBB(imageFile);
+      setUploading(false);
+
+      // Get form data
+      const form = e.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const age = form.age.value;
+      const number = form.number.value;
+      const time = form.time.value;
+
+      const trainer = {
+        name,
+        email,
+        image: imageUrl,
+        age,
+        number,
+        available_time: time,
+        available_day,
+        isChecked,
+        status: "pending",
+      };
+
+      await axiosPublic.post("/appliedTrainer", trainer);
+
       toast.success("Applied Successfully");
       form.reset();
+      setImageFile(null);
     } catch (error) {
-      toast.error(error.message);
+      setUploading(false);
+      toast.error("Image upload failed. Try again.");
     }
+    setLoading(false);
   };
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50 mb-5 text-left">
         <form onSubmit={handleSubmit}>
-          <p className="text-2xl text-center font-bold py-5">
+          <p className="text-xl md:text-4xl text-center font-bold py-5">
             Become A Trainer
           </p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -100,7 +126,7 @@ const BecomeTrainer = () => {
                       type="checkbox"
                       value="Functional Fitness"
                       onChange={handleChange}
-                    />
+                    />{" "}
                     Functional Fitness
                   </label>
 
@@ -109,7 +135,7 @@ const BecomeTrainer = () => {
                       type="checkbox"
                       value="Mindfulness"
                       onChange={handleChange}
-                    />
+                    />{" "}
                     Mindfulness
                   </label>
 
@@ -118,8 +144,16 @@ const BecomeTrainer = () => {
                       type="checkbox"
                       value=" Bodybuilding"
                       onChange={handleChange}
-                    />
+                    />{" "}
                     Bodybuilding
+                  </label>
+                  <label htmlFor="">
+                    <input
+                      type="checkbox"
+                      value="Flexibility"
+                      onChange={handleChange}
+                    />{" "}
+                    Flexibility
                   </label>
                 </div>
                 <div className="space-y-1 text-sm">
@@ -177,11 +211,11 @@ const BecomeTrainer = () => {
                   Profile Image
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
+                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 rounded-md"
                   name="image"
-                  id="image"
-                  type="text"
-                  placeholder="Profile Image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
                   required
                 />
               </div>
@@ -224,10 +258,12 @@ const BecomeTrainer = () => {
           </div>
 
           <button
+            disabled={loading}
             type="submit"
             className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500"
           >
-            Applied
+            {" "}
+            {loading ? "Loading..." : "Applied"}
           </button>
         </form>
       </div>

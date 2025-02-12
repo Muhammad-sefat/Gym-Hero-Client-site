@@ -2,37 +2,55 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
 import register from "../../assets/login02.jpg";
+import { useState } from "react";
+import { uploadImageToImgBB } from "../Provider/UploadImages";
 
 const Register = () => {
   const { createUser, signInWithGoogle, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  const [loading, setLoading] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(null);
+
+  const handleFileChange = (e) => {
+    setProfilePicture(e.target.files[0]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const image = form.image.value;
     const password = form.password.value;
+    let imageUrl = null;
+
+    if (profilePicture) {
+      try {
+        imageUrl = await uploadImageToImgBB(profilePicture);
+      } catch (error) {
+        toast.error("Image upload failed");
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
-      const result = await createUser(email, password);
+      await createUser(email, password);
 
-      console.log(result);
-
-      updateUserProfile(name, image);
+      updateUserProfile(name, imageUrl);
       toast.success("SignUp Successful");
       navigate(from);
     } catch (err) {
       toast(err.message);
     }
+    setLoading(false);
   };
 
   const handleSignin = async () => {
     try {
       const result = await signInWithGoogle();
-      console.log(result);
       toast.success("SignUp Successful");
       navigate(from);
     } catch (err) {
@@ -78,11 +96,9 @@ const Register = () => {
               Photo URL
             </label>
             <input
-              type="text"
-              name="image"
-              id="image"
-              placeholder="Photo URL"
-              className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+              type="file"
+              onChange={handleFileChange}
+              className="file-input file-input-bordered w-full mb-4"
             />
           </div>
           <div className="space-y-1 text-sm">
@@ -97,8 +113,11 @@ const Register = () => {
               className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>
-          <button className="block w-full p-3 hover:bg-pink-500 border border-blue-500 text-center rounded-lg font-medium dark:text-gray-50 dark:bg-violet-600">
-            Sign up
+          <button
+            disabled={loading}
+            className="block w-full p-3 hover:bg-pink-500 border border-blue-500 text-center rounded-lg font-medium dark:text-gray-50 dark:bg-violet-600"
+          >
+            {loading ? "Loading..." : "Sign Up"}
           </button>
         </form>
         <div className="flex items-center pt-4 space-x-1">
