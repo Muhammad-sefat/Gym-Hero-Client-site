@@ -47,67 +47,51 @@ const Balance = () => {
   const COLORS = ["#0088FE", "#00C49F"];
 
   return (
-    <div>
-      <h2 className="text-4xl font-semibold mb-5">Balance Summary</h2>
-      <p className="text-xl font-semibold mb-8 border p-2 bg-blue-400 rounded">
-        Total Balance : ${totalPrice}
-      </p>
+    <div className="container mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+      {/* Balance Summary Header */}
+      <h2 className="text-4xl font-semibold text-gray-900 dark:text-gray-100 mb-6 text-center">
+        Balance Summary
+      </h2>
 
-      <table className="min-w-full leading-normal">
-        <thead className="text-center">
-          <tr>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
-              #
-            </th>
+      {/* Total Balance Card */}
+      <div className="flex justify-center mb-8">
+        <p className="text-xl font-semibold px-6 py-3 border bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-lg shadow-md">
+          Total Balance: <span className="font-bold">${totalPrice}</span>
+        </p>
+      </div>
 
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
-              Name
-            </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
-              Email
-            </th>
-            <th
-              scope="col"
-              className="px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-sm uppercase font-normal"
-            >
-              TransitionId
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {recentTransactions.map((person, index) => (
-            <tr
-              key={index}
-              className="text-center border-b border-gray-200 dark:border-gray-300 dark:bg-gray-100"
-            >
-              <td className="px-3 py-2">
-                <span>{index + 1}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.name}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.email}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.transactionId}</span>
-              </td>
+      {/* Responsive Table */}
+      <div className="overflow-x-auto rounded-lg shadow-md">
+        <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+          <thead className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+            <tr className="text-center">
+              <th className="p-4 text-lg">#</th>
+              <th className="p-4 text-lg">Name</th>
+              <th className="p-4 text-lg">Email</th>
+              <th className="p-4 text-lg">Transaction ID</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
-      <div>
-        {/* Pie Chart */}
+          <tbody>
+            {recentTransactions.map((person, index) => (
+              <tr
+                key={index}
+                className="text-center text-gray-800 dark:text-gray-200 border-b border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              >
+                <td className="p-4">{index + 1}</td>
+                <td className="p-4">{person.name}</td>
+                <td className="p-4">{person.email}</td>
+                <td className="p-4 text-blue-600 dark:text-blue-400 font-semibold">
+                  {person.transactionId}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pie Chart Section */}
+      <div className="flex justify-center mt-10">
         <PieChart width={400} height={400}>
           <Pie
             data={chartData}

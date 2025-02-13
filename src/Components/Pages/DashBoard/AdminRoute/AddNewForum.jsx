@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useRole from "../../../Hooks/useRole";
+import { uploadImageToImgBB } from "../../../Provider/UploadImages";
 
 const AddNewForum = () => {
   const axiosSecure = useAxiosSecure();
@@ -29,19 +30,24 @@ const AddNewForum = () => {
       return newViewCount;
     };
     const { name, image, author, title, description, badge } = data;
-    const newForum = {
-      name,
-      image,
-      author,
-      title,
-      long_description: description,
-      date: getCurrentDate(),
-      views: createRandomViewCount(),
-      badge,
-    };
+    if (!image[0]) {
+      toast.error("Please select an image.");
+      return;
+    }
     try {
-      const { data } = await axiosSecure.post("/community", newForum);
-      console.log(data);
+      const imageUrl = await uploadImageToImgBB(image[0]);
+      const newForum = {
+        name,
+        image: imageUrl,
+        author,
+        title,
+        long_description: description,
+        date: getCurrentDate(),
+        views: createRandomViewCount(),
+        badge,
+      };
+      await axiosSecure.post("/community", newForum);
+
       toast.success("Add New Forum Successfull");
       reset();
     } catch (error) {
@@ -76,10 +82,10 @@ const AddNewForum = () => {
               </label>
               <input
                 id="image"
-                type="text"
-                placeholder="Image URL"
+                type="file"
+                accept="image/*"
                 required
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+                className="block w-full px-4 py-2 mt-2 border rounded-md dark:bg-gray-800 dark:text-gray-300"
                 {...register("image", { required: true })}
               />
             </div>

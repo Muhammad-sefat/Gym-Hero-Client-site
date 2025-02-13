@@ -43,57 +43,62 @@ const AppliedTrainer = () => {
   };
 
   return (
-    <div>
-      <p className="text-3xl font-semibold my-5">Requested Trainers</p>
+    <div className="container mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+      {/* Header */}
+      <h2 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-6 text-center">
+        Requested Trainers
+      </h2>
 
-      <table className="min-w-full leading-normal">
-        <thead className="text-center">
-          <tr>
-            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-              #
-            </th>
-            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-              Name
-            </th>
-            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-              Email
-            </th>
-            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-              Status
-            </th>
-            <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {trainer.map((person, index) => (
-            <tr
-              key={person._id}
-              className="text-center border-b border-gray-200 dark:border-gray-300 dark:bg-gray-100"
-            >
-              <td className="px-3 py-2">
-                <span>{index + 1}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.name}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.email}</span>
-              </td>
-              <td className="px-3 py-2">
-                <span>{person.status}</span>
-              </td>
-              <td className="px-3 py-2">
-                <button onClick={() => handleModal(person)}>
-                  <FiEye className="text-3xl mx-auto" />
-                </button>
-              </td>
+      {/* Responsive Table */}
+      <div className="overflow-x-auto rounded-lg shadow-md">
+        <table className="min-w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg">
+          <thead className="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+            <tr className="text-center">
+              <th className="p-4 text-lg">#</th>
+              <th className="p-4 text-lg">Name</th>
+              <th className="p-4 text-lg">Email</th>
+              <th className="p-4 text-lg">Status</th>
+              <th className="p-4 text-lg">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
+          <tbody>
+            {trainer.map((person, index) => (
+              <tr
+                key={person._id}
+                className="text-center text-gray-800 dark:text-gray-200 border-b border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              >
+                <td className="p-4">{index + 1}</td>
+                <td className="p-4">{person.name}</td>
+                <td className="p-4">{person.email}</td>
+                <td className="p-4">
+                  <span
+                    className={`px-4 py-2 rounded-lg text-white font-semibold ${
+                      person.status === "Approved"
+                        ? "bg-green-500"
+                        : person.status === "Pending"
+                        ? "bg-yellow-500"
+                        : "bg-red-500"
+                    }`}
+                  >
+                    {person.status}
+                  </span>
+                </td>
+                <td className="p-4">
+                  <button
+                    onClick={() => handleModal(person)}
+                    className="p-2 rounded-full bg-blue-500 hover:bg-blue-700 transition-all text-white"
+                  >
+                    <FiEye className="text-2xl mx-auto" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Modal */}
       {selectedPerson && (
         <Modal
           isModalOpen={isModalOpen}

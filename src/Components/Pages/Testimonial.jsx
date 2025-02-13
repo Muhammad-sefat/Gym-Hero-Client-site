@@ -8,7 +8,6 @@ import SingleReview from "./SingleReview";
 
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
 
   useEffect(() => {
     fetch("http://localhost:5000/review")
