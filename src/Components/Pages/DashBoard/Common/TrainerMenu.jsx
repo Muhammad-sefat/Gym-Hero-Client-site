@@ -6,7 +6,7 @@ const TrainerMenu = () => {
   return (
     <div>
       <CommonMenu
-        link={"/Dashboard"}
+        link={"manage-slot"}
         title={"Manage Slots"}
         icon={FaPeopleGroup}
       />

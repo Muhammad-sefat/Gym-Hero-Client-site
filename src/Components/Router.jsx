@@ -24,6 +24,7 @@ import AddNewForum from "./Pages/DashBoard/AdminRoute/AddNewForum";
 import RecommendedClasses from "./Pages/DashBoard/MemberRoute/RecommendedClasses";
 import ActiveLogPage from "./Pages/DashBoard/MemberRoute/ActiveLogPage";
 import PaymentPage from "./Pages/AllTrainers/PaymentPage";
+import ManageSlot from "./Pages/DashBoard/TrainerRoute/ManageSlot";
 import AddNewSlot from "./Pages/DashBoard/TrainerRoute/AddNewSlot";
 import Balance from "./Pages/DashBoard/AdminRoute/Balance";
 
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
       {
         path: "balance",
         element: <Balance />,
+      },
+      {
+        path: "manage-slot",
+        element: <ManageSlot />,
       },
       {
         path: "Add-new-slot",
