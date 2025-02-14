@@ -1,0 +1,17 @@
+[
+  {
+    "time": "2025-02-14, 10:30 AM",
+    "type": "Login",
+    "details": "Successfully logged in from IP address 192.168.1.1"
+  },
+  {
+    "time": "2025-02-13, 03:15 PM",
+    "type": "Profile Update",
+    "details": "Changed profile picture."
+  },
+  {
+    "time": "2025-02-12, 09:00 AM",
+    "type": "Booking",
+    "details": "Booked a slot for 'Morning Time' from 9 AM to 11 AM."
+  }
+]

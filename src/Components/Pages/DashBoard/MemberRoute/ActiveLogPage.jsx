@@ -1,53 +1,48 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
 
 const ActiveLogPage = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: trainer = [], refetch } = useQuery({
-    queryKey: ["trainer"],
-    queryFn: async () => {
-      const { data } = await axiosSecure.get("/appliedTrainer");
-      return data;
-    },
-  });
+  const [activities, setActivities] = useState([]);
+  console.log(activities);
+
+  useEffect(() => {
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => setActivities(data));
+  }, []);
   return (
-    <div>
-      <div>
-        <p className="text-3xl font-semibold my-5">All Applied Trainer Here</p>
-        <table className="min-w-full leading-normal">
-          <thead className="text-center">
-            <tr>
-              <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-                #
+    <div className="p-6">
+      <h2 className="text-3xl font-bold mb-4">Activity Log</h2>
+      <div className="overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="min-w-full leading-normal bg-white">
+          <thead>
+            <tr className="bg-gray-200 border-b">
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Time
               </th>
-              <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-                Name
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Activity
               </th>
-              <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-                Email
-              </th>
-              <th className="px-5 py-3 bg-white border-b border-gray-200 text-gray-800 text-sm uppercase font-normal">
-                Status
+              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">
+                Details
               </th>
             </tr>
           </thead>
           <tbody>
-            {trainer.map((person, index) => (
-              <tr
-                key={person._id}
-                className="text-center border-b border-gray-200 dark:border-gray-300 dark:bg-gray-100"
-              >
-                <td className="px-3 py-2">
-                  <span>{index + 1}</span>
+            {activities.map((activity, index) => (
+              <tr key={index} className="border-b hover:bg-gray-50">
+                <td className="px-6 py-4 text-sm text-gray-900">
+                  {activity.time}
                 </td>
-                <td className="px-3 py-2">
-                  <span>{person.name}</span>
+                <td className="px-6 py-4 text-sm text-gray-900">
+                  <div className="flex items-center">
+                    <span className="mr-2">
+                      <i className={`icon-${activity.type}`}></i>
+                    </span>
+                    {activity.type}
+                  </div>
                 </td>
-                <td className="px-3 py-2">
-                  <span>{person.email}</span>
-                </td>
-                <td className="px-3 py-2">
-                  <span>{person.status}</span>
+                <td className="px-6 py-4 text-sm text-gray-900">
+                  {activity.details}
                 </td>
               </tr>
             ))}
