@@ -50,7 +50,7 @@ const Register = () => {
 
   const handleSignin = async () => {
     try {
-      const result = await signInWithGoogle();
+      await signInWithGoogle();
       toast.success("SignUp Successful");
       navigate(from);
     } catch (err) {

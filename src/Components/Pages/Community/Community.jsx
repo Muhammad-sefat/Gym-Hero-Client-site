@@ -42,7 +42,7 @@ const Community = () => {
       <Helmet>
         <title>Gym Hero || Community</title>
       </Helmet>
-      <p className="text-3xl font-bold">Our Community Post</p>
+      <p className="text-3xl font-bold mb-5">Our Community Post</p>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {posts.map((post) => (
           <SinglePost key={post._id} post={post} />

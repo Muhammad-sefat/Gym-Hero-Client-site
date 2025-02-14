@@ -16,7 +16,7 @@ const options = [
 
 const BecomeTrainer = () => {
   const [isChecked, setIsChecked] = useState([]);
-  const [available_day, setSelectedValue] = useState("");
+  const [available_day, setSelectedValue] = useState(null);
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,21 +25,17 @@ const BecomeTrainer = () => {
 
   const handleChange = (e) => {
     const { value, checked } = e.target;
-    if (checked) {
-      setIsChecked((val) => [...val, value]);
-    } else {
-      setIsChecked((val) => {
-        return [...val.filter((skill) => skill !== value)];
-      });
-    }
+    setIsChecked((prev) =>
+      checked ? [...prev, value] : prev.filter((skill) => skill !== value)
+    );
   };
-  const handleChanges = (event) => {
-    setSelectedValue(event.value);
+
+  const handleChanges = (selectedOption) => {
+    setSelectedValue(selectedOption.value);
   };
 
   const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
+    setImageFile(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
@@ -48,45 +44,43 @@ const BecomeTrainer = () => {
 
     if (!imageFile) {
       toast.error("Please select an image.");
+      setLoading(false);
       return;
     }
 
     setUploading(true);
     try {
+      // Upload image to ImgBB (or any other service)
       const imageUrl = await uploadImageToImgBB(imageFile);
-      setUploading(false);
 
-      // Get form data
       const form = e.target;
-      const name = form.name.value;
-      const email = form.email.value;
-      const age = form.age.value;
-      const number = form.number.value;
-      const time = form.time.value;
-
-      const trainer = {
-        name,
-        email,
+      const trainerData = {
+        name: form.name.value,
+        email: form.email.value,
         image: imageUrl,
-        age,
-        number,
-        available_time: time,
+        age: form.age.value,
+        number: form.number.value,
+        available_time: form.time.value,
         available_day,
-        isChecked,
+        skills: isChecked,
         status: "pending",
       };
 
-      await axiosPublic.post("/appliedTrainer", trainer);
+      await axiosPublic.post("/appliedTrainer", trainerData);
 
       toast.success("Applied Successfully");
       form.reset();
+      setIsChecked([]);
+      setSelectedValue(null);
       setImageFile(null);
     } catch (error) {
+      toast.error("Something went wrong. Try again.");
+    } finally {
       setUploading(false);
-      toast.error("Image upload failed. Try again.");
+      setLoading(false);
     }
-    setLoading(false);
   };
+
   return (
     <div>
       <div className="w-full flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50 mb-5 text-left">
@@ -97,16 +91,12 @@ const BecomeTrainer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
-                <label
-                  htmlFor="fullname"
-                  className="block font-semibold text-gray-600"
-                >
+                <label className="block font-semibold text-gray-600">
                   Full Name
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
+                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md"
                   name="name"
-                  id="fullname"
                   type="text"
                   placeholder="Full Name"
                   required
@@ -114,88 +104,57 @@ const BecomeTrainer = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label
-                  htmlFor="skill"
-                  className="block font-semibold text-gray-600"
-                >
+                <label className="block font-semibold text-gray-600">
                   Skills
                 </label>
                 <div className="flex gap-3 font-medium py-3">
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      value="Functional Fitness"
-                      onChange={handleChange}
-                    />{" "}
-                    Functional Fitness
-                  </label>
-
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      value="Mindfulness"
-                      onChange={handleChange}
-                    />{" "}
-                    Mindfulness
-                  </label>
-
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      value=" Bodybuilding"
-                      onChange={handleChange}
-                    />{" "}
-                    Bodybuilding
-                  </label>
-                  <label htmlFor="">
-                    <input
-                      type="checkbox"
-                      value="Flexibility"
-                      onChange={handleChange}
-                    />{" "}
-                    Flexibility
-                  </label>
+                  {[
+                    "Functional Fitness",
+                    "Mindfulness",
+                    "Bodybuilding",
+                    "Flexibility",
+                  ].map((skill) => (
+                    <label key={skill}>
+                      <input
+                        type="checkbox"
+                        value={skill}
+                        onChange={handleChange}
+                      />{" "}
+                      {skill}
+                    </label>
+                  ))}
                 </div>
-                <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="time"
-                    className="block font-semibold text-gray-600"
-                  >
-                    Available Time in Days
-                  </label>
-                  <input
-                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
-                    name="time"
-                    id="time"
-                    type="text"
-                    placeholder="Available Time"
-                    required
-                  />
-                </div>
+              </div>
+
+              <div className="space-y-1 text-sm">
+                <label className="block font-semibold text-gray-600">
+                  Available Time in Days
+                </label>
+                <input
+                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md"
+                  name="time"
+                  type="text"
+                  placeholder="Available Time"
+                  required
+                />
               </div>
 
               <div className="space-y-1">
-                <label
-                  htmlFor="location"
-                  className="block font-semibold text-gray-600"
-                >
+                <label className="block font-semibold text-gray-600">
                   Available Days
                 </label>
-                <Select options={options} onChange={handleChanges}></Select>
+                <Select options={options} onChange={handleChanges} />
               </div>
             </div>
+
             <div className="space-y-6">
               <div className="space-y-1 text-sm">
-                <label
-                  htmlFor="email"
-                  className="block font-semibold text-gray-600"
-                >
+                <label className="block font-semibold text-gray-600">
                   Email
                 </label>
                 <input
-                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
+                  className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md"
                   name="email"
-                  id="email"
                   type="email"
                   defaultValue={user?.email}
                   readOnly
@@ -204,10 +163,7 @@ const BecomeTrainer = () => {
               </div>
 
               <div className="space-y-1 text-sm">
-                <label
-                  htmlFor="image"
-                  className="block font-semibold text-gray-600"
-                >
+                <label className="block font-semibold text-gray-600">
                   Profile Image
                 </label>
                 <input
@@ -217,20 +173,18 @@ const BecomeTrainer = () => {
                   accept="image/*"
                   onChange={handleImageChange}
                   required
+                  disabled={uploading}
                 />
               </div>
+
               <div className="flex justify-between gap-2">
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="age"
-                    className="block font-semibold text-gray-600"
-                  >
+                  <label className="block font-semibold text-gray-600">
                     Age
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
+                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md"
                     name="age"
-                    id="age"
                     type="number"
                     placeholder="Age"
                     required
@@ -238,16 +192,12 @@ const BecomeTrainer = () => {
                 </div>
 
                 <div className="space-y-1 text-sm">
-                  <label
-                    htmlFor="guest"
-                    className="block font-semibold text-gray-600"
-                  >
+                  <label className="block font-semibold text-gray-600">
                     Phone Number
                   </label>
                   <input
-                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md "
+                    className="w-full px-4 py-3 text-gray-800 border border-blue-300 focus:outline-blue-500 rounded-md"
                     name="number"
-                    id="number"
                     type="number"
                     placeholder="Phone Number"
                     required
@@ -262,8 +212,7 @@ const BecomeTrainer = () => {
             type="submit"
             className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-blue-500"
           >
-            {" "}
-            {loading ? "Loading..." : "Applied"}
+            {loading ? "Loading..." : "Apply"}
           </button>
         </form>
       </div>

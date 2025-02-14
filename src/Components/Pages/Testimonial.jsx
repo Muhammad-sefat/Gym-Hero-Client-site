@@ -23,7 +23,7 @@ const Testimonial = () => {
             WHAT OUR CLIENTS SAY
           </span>
         </p>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+        <p className="text-xl text-gray-600 dark:text-gray-400 mt-2">
           Hear from our happy clients who trust us.
         </p>
       </div>

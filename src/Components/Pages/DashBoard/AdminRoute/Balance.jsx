@@ -8,6 +8,7 @@ const Balance = () => {
   const [newsLetter, setNewsLetter] = useState([]);
   const [paidMembers, setPaidMembers] = useState(0);
   const axiosSecure = useAxiosSecure();
+  console.log(paidMembers);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,7 +20,12 @@ const Balance = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosSecure.get("/paidMember");
-      setPaidMembers(data);
+
+      if (Array.isArray(data)) {
+        setPaidMembers(data.length);
+      } else {
+        setPaidMembers(0);
+      }
     };
     getData();
   }, []);
@@ -30,7 +36,6 @@ const Balance = () => {
         const { data } = await axiosSecure.get("/transactions-summary");
         setTotalPrice(data.totalPrice);
         setRecentTransactions(data.recentTransactions);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching transaction summary:", error);
       }
@@ -40,8 +45,8 @@ const Balance = () => {
   }, []);
 
   const chartData = [
-    { name: "Newsletter Subscribers", value: newsLetter.length },
-    { name: "Paid Members", value: paidMembers },
+    { name: "Newsletter Subscribers", value: newsLetter.length || 0 },
+    { name: "Paid Members", value: paidMembers || 0 },
   ];
 
   const COLORS = ["#0088FE", "#00C49F"];
@@ -92,27 +97,32 @@ const Balance = () => {
 
       {/* Pie Chart Section */}
       <div className="flex justify-center mt-10">
-        <PieChart width={400} height={400}>
-          <Pie
-            data={chartData}
-            cx={200}
-            cy={200}
-            labelLine={false}
-            label
-            outerRadius={150}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {chartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
+        {chartData.some((data) => data.value > 0) ? (
+          <PieChart width={600} height={500}>
+            <Pie
+              data={chartData}
+              cx="50%"
+              cy="50%"
+              label={({ name, value }) => `${name}: ${value}`}
+              outerRadius={120}
+              fill="#8884d8"
+              dataKey="value"
+            >
+              {chartData.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        ) : (
+          <p className="text-gray-500 text-lg">
+            No data available for the chart
+          </p>
+        )}
       </div>
     </div>
   );

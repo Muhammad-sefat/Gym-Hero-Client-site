@@ -8,6 +8,7 @@ import {
 import { Fragment, useEffect, useState } from "react";
 
 const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
+  console.log(person);
   const [comment, setComment] = useState("");
   useEffect(() => {
     setComment("");
@@ -65,7 +66,7 @@ const Modal = ({ isModalOpen, closeModal, handleConfirm, person }) => {
                   </p>
                   <p className="text-sm text-gray-500">
                     <span className="font-medium"> Skill :</span>
-                    {person.isChecked.map((skill, index) => (
+                    {person?.skills?.map((skill, index) => (
                       <li key={index}>{skill}</li>
                     ))}
                   </p>
